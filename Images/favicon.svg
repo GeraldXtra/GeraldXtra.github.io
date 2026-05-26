@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;display=swap');
+      .fav-text { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
+    </style>
+  </defs>
+  <rect width="64" height="64" rx="8" fill="#141210"/>
+  <rect x="0" y="0" width="4" height="64" rx="0" fill="#B5541E"/>
+  <text class="fav-text" x="36" y="45" font-size="30" text-anchor="middle" fill="#F5F0E6">EUG</text>
+  <text class="fav-text" x="58" y="45" font-size="30" text-anchor="middle" fill="#B5541E">.</text>
+</svg>
