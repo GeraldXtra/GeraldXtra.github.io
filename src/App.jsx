@@ -5,7 +5,6 @@ import Contact from "./components/Contact/Contact";
 import Cursor from "./components/Cursor/Cursor";
 import Footer from "./components/Footer/Footer";
 import Hero from "./components/Hero/Hero";
-import Marquee from "./components/Marquee/Marquee";
 import Navbar from "./components/Navbar/Navbar";
 import Preloader from "./components/Preloader/Preloader";
 import Process from "./components/Process/Process";
@@ -73,7 +72,6 @@ export default function App() {
           next Tab restarts from the top of the page. */}
       <main id="main" tabIndex={-1}>
         <Hero ready={ready} />
-        <Marquee />
         <About />
         <Services />
         <Skills />

@@ -97,17 +97,6 @@ export default function Hero({ ready }) {
             </Magnetic>
           </div>
 
-          <a
-            href="#about"
-            className="hero__scroll"
-            style={{ "--in": "820ms" }}
-            onClick={(event) => go(event, "#about")}
-          >
-            <span className="hero__scroll-track" aria-hidden="true">
-              <span className="hero__scroll-bead" />
-            </span>
-            Scroll to read on
-          </a>
         </div>
 
         <div className="hero__portrait" style={{ "--in": "540ms" }}>
