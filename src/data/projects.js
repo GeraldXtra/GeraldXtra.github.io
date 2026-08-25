@@ -110,6 +110,7 @@ export const projects = [
     index: "08",
     type: "web",
     tagLabel: "Web Dev",
+    title: "LedgerWatch",
     image: ledgerwatch,
     alt: "Ledger Watch landing page.",
     description:
