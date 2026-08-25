@@ -4,7 +4,7 @@
 
 .contact {
   position: relative;
-  border-top: 1px solid var(--edge-dark);
+  border-top: 1px solid var(--edge);
 }
 
 .contact::before {
@@ -14,10 +14,10 @@
   pointer-events: none;
   background: radial-gradient(
       48% 42% at 8% 12%,
-      rgba(181, 84, 30, 0.11),
+      var(--glow-warm-soft),
       transparent 62%
     ),
-    radial-gradient(44% 40% at 92% 88%, rgba(59, 94, 69, 0.09), transparent 60%);
+    radial-gradient(44% 40% at 92% 88%, var(--glow-cool-soft), transparent 60%);
 }
 
 .contact__grid {
@@ -46,7 +46,7 @@
   align-items: center;
   gap: var(--space-4);
   padding: 0.85rem 1rem;
-  border: 1px solid var(--edge-dark);
+  border: 1px solid var(--edge);
   border-radius: var(--radius-sm);
   overflow: hidden;
   isolation: isolate;
@@ -60,14 +60,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--clay-wash);
+  background: var(--accent-wash);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 520ms var(--ease-in-out-quart);
 }
 
 .channel:hover {
-  border-color: var(--clay-edge);
+  border-color: var(--accent-edge);
   transform: translateX(4px);
 }
 
@@ -81,9 +81,9 @@
   flex-shrink: 0;
   width: 40px;
   height: 40px;
-  border: 1px solid var(--edge-dark);
+  border: 1px solid var(--edge);
   border-radius: var(--radius-xs);
-  color: var(--clay-400);
+  color: var(--accent-text);
   transition: background var(--dur-base) var(--ease-out-quart),
     border-color var(--dur-base) var(--ease-out-quart),
     color var(--dur-base) var(--ease-out-quart),
@@ -91,9 +91,9 @@
 }
 
 .channel:hover .channel__icon {
-  background: var(--clay-500);
-  border-color: var(--clay-500);
-  color: #fff;
+  background: var(--accent-solid);
+  border-color: var(--accent-solid);
+  color: var(--accent-on-solid);
   transform: rotate(-6deg);
 }
 
@@ -108,24 +108,24 @@
   font-size: var(--size-micro);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
   transition: color var(--dur-base) var(--ease-out-quart);
 }
 
 .channel__value {
   font-size: var(--size-small);
-  color: var(--text-on-dark);
+  color: var(--fg);
   overflow-wrap: anywhere;
 }
 
 .channel:hover .channel__label {
-  color: var(--clay-400);
+  color: var(--accent-text);
 }
 
 .channel__arrow {
   margin-left: auto;
   flex-shrink: 0;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
   opacity: 0;
   transform: translate3d(-8px, 5px, 0);
   transition: opacity 320ms var(--ease-out-quart),
@@ -136,7 +136,7 @@
 .channel:hover .channel__arrow {
   opacity: 1;
   transform: none;
-  color: var(--clay-400);
+  color: var(--accent-text);
 }
 
 .contact__note {
@@ -147,7 +147,7 @@
   font-size: var(--size-micro);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
 }
 
 .contact__note-pulse {
@@ -155,8 +155,8 @@
   height: 7px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: var(--moss-300);
-  box-shadow: 0 0 0 4px rgba(107, 156, 122, 0.13);
+  background: var(--accent-alt-text);
+  box-shadow: 0 0 0 4px var(--accent-alt-wash);
   animation: softPulse 2.6s var(--ease-in-out-quart) infinite;
 }
 
@@ -167,9 +167,9 @@
 
 .form {
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  border: 1px solid var(--edge-dark);
+  border: 1px solid var(--edge);
   border-radius: var(--radius-md);
-  background: var(--ink-850);
+  background: var(--surface-raised);
   box-shadow: var(--shadow-dark);
 }
 
@@ -202,24 +202,24 @@
   font-size: var(--size-micro);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
   transition: color var(--dur-base) var(--ease-out-quart);
 }
 
 .field:focus-within .field__label {
-  color: var(--clay-400);
+  color: var(--accent-text);
 }
 
 .field__count {
   font-size: var(--size-micro);
   letter-spacing: 0.08em;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
   font-variant-numeric: tabular-nums;
   transition: color var(--dur-base) var(--ease-out-quart);
 }
 
 .field__count.is-low {
-  color: var(--brass-400);
+  color: var(--accent-third-text);
 }
 
 .field__input {
@@ -228,9 +228,9 @@
   font-family: var(--font-body);
   font-size: var(--size-body);
   font-weight: 300;
-  color: var(--bone-100);
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid var(--edge-dark);
+  color: var(--fg);
+  background: var(--wash-subtle);
+  border: 1px solid var(--edge);
   border-radius: var(--radius-xs);
   outline: none;
   transition: border-color var(--dur-base) var(--ease-out-quart),
@@ -239,26 +239,26 @@
 }
 
 .field__input::placeholder {
-  color: rgba(245, 240, 230, 0.24);
+  color: var(--placeholder);
 }
 
 .field__input:hover {
-  border-color: var(--edge-dark-strong);
+  border-color: var(--edge-strong);
 }
 
 /* Clicking in gets the soft treatment. Arriving by keyboard gets a ring that
    actually stands out against the dark panel, because that is the only signal
    a keyboard user has about where they are. */
 .field__input:focus {
-  border-color: var(--clay-400);
-  background: rgba(181, 84, 30, 0.06);
-  box-shadow: 0 0 0 3px rgba(181, 84, 30, 0.22);
+  border-color: var(--accent-text);
+  background: var(--accent-wash);
+  box-shadow: 0 0 0 3px var(--accent-edge);
 }
 
 .field__input:focus-visible {
-  outline: 2px solid var(--clay-300);
+  outline: 2px solid var(--accent-text-strong);
   outline-offset: 2px;
-  border-color: var(--clay-300);
+  border-color: var(--accent-text-strong);
   box-shadow: none;
 }
 
@@ -269,18 +269,18 @@
 }
 
 .field__input.is-invalid {
-  border-color: rgba(224, 98, 92, 0.55);
-  background: rgba(224, 98, 92, 0.05);
+  border-color: var(--error-edge);
+  background: var(--error-wash);
 }
 
 .field__input.is-invalid:focus {
-  box-shadow: 0 0 0 3px rgba(224, 98, 92, 0.12);
+  box-shadow: 0 0 0 3px var(--error-ring);
 }
 
 .field__error {
   font-size: var(--size-micro);
   letter-spacing: 0.04em;
-  color: var(--signal-error);
+  color: var(--error-text);
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -321,7 +321,7 @@
   font-size: var(--size-micro);
   letter-spacing: 0.06em;
   line-height: 1.6;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
 }
 
 /* --- Toast --------------------------------------------------------------- */
@@ -355,15 +355,15 @@
 }
 
 .toast--sent {
-  background: var(--moss-wash);
-  border-color: var(--moss-edge);
-  color: var(--signal-ok);
+  background: var(--accent-alt-wash);
+  border-color: var(--accent-alt-edge);
+  color: var(--ok-text);
 }
 
 .toast--error {
-  background: rgba(224, 98, 92, 0.09);
-  border-color: rgba(224, 98, 92, 0.28);
-  color: var(--signal-error);
+  background: var(--error-wash-strong);
+  border-color: var(--error-edge-soft);
+  color: var(--error-text);
 }
 
 /* --- Breakpoints ---------------------------------------------------------- */

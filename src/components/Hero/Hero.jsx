@@ -95,6 +95,21 @@ export default function Hero({ ready }) {
                 <span className="btn__label">{hero.secondaryCta.label}</span>
               </a>
             </Magnetic>
+
+            {/* Quieter than the two buttons on purpose. It is the thing a
+                recruiter reaches for, but it should not compete with the
+                work itself. */}
+            <a
+              className="hero__resume"
+              href={profile.resumeUrl}
+              download={profile.resumeName}
+            >
+              <span className="hero__resume-icon" aria-hidden="true">
+                <Icon name="download" size={15} />
+              </span>
+              <span className="hero__resume-text">Download my resume</span>
+              <span className="sr-only">, PDF</span>
+            </a>
           </div>
 
         </div>

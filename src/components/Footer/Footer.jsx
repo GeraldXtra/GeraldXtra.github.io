@@ -91,7 +91,7 @@ export default function Footer() {
             © {YEAR} {profile.fullName}. All rights reserved.
           </p>
           <p className="footer__built">
-            Designed and built by hand · React and Vite
+            Designed and built by me, with React and Vite
           </p>
         </div>
       </div>

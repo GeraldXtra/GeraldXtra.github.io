@@ -4,7 +4,7 @@
 
 .skills {
   position: relative;
-  border-top: 1px solid var(--edge-dark);
+  border-top: 1px solid var(--edge);
 }
 
 .skills::before {
@@ -14,7 +14,7 @@
   pointer-events: none;
   background: radial-gradient(
     50% 46% at 14% 18%,
-    rgba(196, 154, 60, 0.07),
+    var(--glow-third),
     transparent 64%
   );
 }
@@ -40,7 +40,7 @@
   text-transform: uppercase;
   padding-bottom: 0.9rem;
   margin-bottom: clamp(1.5rem, 3vw, 2.1rem);
-  border-bottom: 1px solid var(--edge-dark);
+  border-bottom: 1px solid var(--edge);
   width: 100%;
 }
 
@@ -52,19 +52,19 @@
 }
 
 .skills__label--clay {
-  color: var(--clay-400);
+  color: var(--accent-text);
 }
 
 .skills__label--clay::before {
-  background: var(--clay-500);
+  background: var(--accent-solid);
 }
 
 .skills__label--moss {
-  color: var(--moss-300);
+  color: var(--accent-alt-text);
 }
 
 .skills__label--moss::before {
-  background: var(--moss-400);
+  background: var(--accent-alt-mid);
 }
 
 /* --- Meters ----------------------------------------------------- */
@@ -85,27 +85,27 @@
 .meter__name {
   font-size: var(--size-body);
   font-weight: 400;
-  color: var(--text-on-dark);
+  color: var(--fg);
 }
 
 .meter__value {
   font-family: var(--font-display);
   font-size: var(--size-small);
   letter-spacing: 0.04em;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
   font-variant-numeric: tabular-nums;
   transition: color var(--dur-base) var(--ease-out-quart);
 }
 
 .meter:hover .meter__value {
-  color: var(--bone-100);
+  color: var(--fg);
 }
 
 .meter__track {
   position: relative;
   height: 3px;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--wash-track);
   overflow: hidden;
 }
 
@@ -118,11 +118,11 @@
 }
 
 .meter__fill--clay {
-  background: linear-gradient(90deg, var(--clay-600), var(--clay-400));
+  background: linear-gradient(90deg, var(--accent-grad-from), var(--accent-grad-to));
 }
 
 .meter__fill--moss {
-  background: linear-gradient(90deg, var(--moss-600), var(--moss-400));
+  background: linear-gradient(90deg, var(--accent-alt-grad-from), var(--accent-alt-grad-to));
 }
 
 /* A highlight that runs along the filled part every few seconds. */
@@ -133,7 +133,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.55),
+    var(--sheen-strong),
     transparent
   );
   transform: translateX(-100%);
@@ -165,7 +165,7 @@
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
 }
 
 .skills__chips {

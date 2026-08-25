@@ -27,7 +27,7 @@ const FIELDS = [
     name: "subject",
     label: "Subject",
     type: "text",
-    placeholder: "New project, or a role you are hiring for",
+    placeholder: "New project, or a role you're hiring for",
     autoComplete: "off",
     half: false,
   },
@@ -82,8 +82,8 @@ export default function Contact() {
           <SectionHeading
             eyebrow="Get in touch"
             eyebrowTone="clay"
-            title={["Let us work", { text: "on it together", accent: true }]}
-            lede="Whether it is a project that needs building or a role you are hiring for, tell me what you have in mind. I read everything and reply to all of it."
+            title={["Let's build", { text: "something good", accent: true }]}
+            lede="Whether it's a project you need built or a role you're hiring for, tell me what you have in mind. I read everything, and I reply to all of it."
           />
 
           <ul className="contact__channels">
@@ -148,7 +148,7 @@ export default function Contact() {
                   className={`field__input field__input--area ${
                     messageInvalid ? "is-invalid" : ""
                   }`}
-                  placeholder="A sentence or two about the project, the timeline, and anything you already know you want."
+                  placeholder="A sentence or two about the project, roughly when you need it, and anything you already know you want."
                   maxLength={limits.message}
                   value={values.message}
                   onChange={form.handleChange}
@@ -196,8 +196,8 @@ export default function Contact() {
                   which passes the message on to my inbox, so a flat claim that
                   nobody else sees it would not be true. */}
               <p className="form__promise">
-                Delivered to my inbox through Formspree. No mailing list, and
-                nothing shared onward.
+                Goes straight to my inbox through Formspree. No mailing list, and
+                nothing passed on.
               </p>
             </div>
 

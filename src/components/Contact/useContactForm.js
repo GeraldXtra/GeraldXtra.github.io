@@ -24,12 +24,12 @@ function checkField(field, raw) {
     case "name":
       if (!value) return "Let me know what to call you";
       if (value.length < 2) return "That looks a little short";
-      if (value.length > LIMITS.name) return "That is longer than I can accept";
+      if (value.length > LIMITS.name) return "That's longer than I can accept";
       return "";
 
     case "email":
       if (!value) return "I need an address to reply to";
-      if (!EMAIL_PATTERN.test(value)) return "That address does not look right";
+      if (!EMAIL_PATTERN.test(value)) return "That address doesn't look right";
       if (value.length > LIMITS.email) return "That address is unusually long";
       return "";
 
@@ -41,9 +41,9 @@ function checkField(field, raw) {
 
     case "message":
       if (!value) return "Tell me a little about it";
-      if (value.length < 12) return "A sentence or two would help me reply well";
+      if (value.length < 12) return "A sentence or two would help me reply properly";
       if (value.length > LIMITS.message)
-        return "That is past the length I can send";
+        return "That's past the length I can send";
       return "";
 
     default:
@@ -179,14 +179,14 @@ export default function useContactForm() {
           setErrors({});
           announce(
             "sent",
-            "Message received. I will get back to you within a day.",
+            "Got it. I'll get back to you within a day.",
           );
           return;
         }
 
         announce(
           "error",
-          "That did not go through. Try again, or email me directly.",
+          "That didn't go through. Try again, or email me directly.",
         );
       } catch (error) {
         window.clearTimeout(cutoff);

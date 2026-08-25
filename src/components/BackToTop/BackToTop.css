@@ -8,10 +8,10 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  color: var(--bone-100);
-  background: rgba(20, 18, 16, 0.72);
+  color: var(--fg);
+  background: var(--scrim-float);
   backdrop-filter: blur(10px);
-  border: 1px solid var(--edge-dark);
+  border: 1px solid var(--edge);
   opacity: 0;
   visibility: hidden;
   transform: translate3d(0, 14px, 0) scale(0.9);
@@ -29,8 +29,8 @@
 }
 
 .to-top:hover {
-  background: var(--clay-500);
-  border-color: var(--clay-500);
+  background: var(--accent-solid);
+  border-color: var(--accent-solid);
   transform: translate3d(0, -3px, 0);
 }
 
@@ -49,7 +49,7 @@
 }
 
 .to-top__ring-track {
-  stroke: rgba(255, 255, 255, 0.08);
+  stroke: var(--wash-ring);
 }
 
 /* Circumference of an r=21 circle, to four places. The dash offset walks it
@@ -57,7 +57,7 @@
    JavaScript touching this element. */
 .to-top__ring-fill {
   --ring-length: 131.9469;
-  stroke: var(--clay-400);
+  stroke: var(--accent-text);
   stroke-linecap: round;
   stroke-dasharray: var(--ring-length);
   stroke-dashoffset: calc(
@@ -67,7 +67,7 @@
 }
 
 .to-top:hover .to-top__ring-fill {
-  stroke: var(--bone-100);
+  stroke: var(--accent-on-solid);
 }
 
 .to-top__icon {

@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   padding: clamp(7rem, 12vh, 9.5rem) var(--gutter) clamp(5rem, 10vh, 7rem);
-  background: var(--ink-850);
+  background: var(--surface);
   overflow: clip;
 }
 
@@ -40,8 +40,8 @@
   background: linear-gradient(
     to bottom,
     transparent,
-    var(--edge-dark) 22%,
-    var(--edge-dark) 78%,
+    var(--edge) 22%,
+    var(--edge) 78%,
     transparent
   );
   transition-delay: 220ms;
@@ -52,7 +52,7 @@
   background: linear-gradient(
     to bottom,
     transparent,
-    rgba(181, 84, 30, 0.22) 34%,
+    var(--accent-edge) 34%,
     transparent 82%
   );
   transition-delay: 340ms;
@@ -63,8 +63,8 @@
   background: linear-gradient(
     to bottom,
     transparent,
-    var(--edge-dark) 16%,
-    var(--edge-dark) 84%,
+    var(--edge) 16%,
+    var(--edge) 84%,
     transparent
   );
   transition-delay: 460ms;
@@ -76,10 +76,10 @@
   opacity: 0;
   background: radial-gradient(
       52% 46% at 74% 26%,
-      rgba(181, 84, 30, 0.16),
+      var(--glow-warm),
       transparent 66%
     ),
-    radial-gradient(46% 44% at 12% 82%, rgba(59, 94, 69, 0.12), transparent 64%);
+    radial-gradient(46% 44% at 12% 82%, var(--glow-cool), transparent 64%);
   transition: opacity 1600ms var(--ease-out-quart) 200ms;
 }
 
@@ -128,21 +128,21 @@
   align-items: center;
   gap: 0.65rem;
   padding: 0.5rem 1rem 0.5rem 0.8rem;
-  border: 1px solid var(--clay-edge);
+  border: 1px solid var(--accent-edge);
   border-radius: var(--radius-pill);
-  background: var(--clay-wash);
+  background: var(--accent-wash);
   font-size: var(--size-micro);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--clay-300);
+  color: var(--accent-text-strong);
 }
 
 .hero__status-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--clay-400);
-  box-shadow: 0 0 0 4px rgba(181, 84, 30, 0.15);
+  background: var(--accent-text);
+  box-shadow: 0 0 0 4px var(--accent-wash-strong);
   animation: softPulse 2.4s var(--ease-in-out-quart) infinite;
 }
 
@@ -154,7 +154,7 @@
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.035em;
-  color: var(--bone-100);
+  color: var(--fg);
 }
 
 /* Each line is a mask. The text inside climbs out from under it. */
@@ -179,7 +179,7 @@
 .hero__title em {
   font-style: italic;
   font-weight: 500;
-  color: var(--clay-400);
+  color: var(--accent-text);
 }
 
 .hero__amp {
@@ -203,7 +203,7 @@
 }
 
 .hero__typed-value {
-  color: var(--brass-400);
+  color: var(--accent-third-text);
   font-style: normal;
   font-family: var(--font-body);
   font-weight: 300;
@@ -215,7 +215,7 @@
   display: inline-block;
   width: 1.5px;
   height: 1.05em;
-  background: var(--clay-400);
+  background: var(--accent-text);
   transform: translateY(0.12em);
   animation: caretBlink 1.05s steps(1) infinite;
 }
@@ -226,7 +226,7 @@
   margin-top: clamp(1.25rem, 2.4vw, 1.75rem);
   font-size: var(--size-lead);
   line-height: 1.85;
-  color: var(--text-on-dark-soft);
+  color: var(--fg-soft);
 }
 
 /* --- Actions --------------------------------------------------- */
@@ -246,6 +246,68 @@
   transform: translateX(4px);
 }
 
+/* --- Resume link ------------------------------------------------
+   A third action that reads as a link rather than a button, so the
+   two real calls to action keep their weight.
+   ---------------------------------------------------------------- */
+.hero__resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.hero__resume:hover {
+  color: var(--accent-text);
+}
+
+.hero__resume-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border: 1px solid var(--edge);
+  border-radius: 50%;
+  transition: border-color var(--dur-base) var(--ease-out-quart),
+    background var(--dur-base) var(--ease-out-quart),
+    transform var(--dur-base) var(--ease-spring);
+}
+
+.hero__resume:hover .hero__resume-icon {
+  border-color: var(--accent-edge);
+  background: var(--accent-wash);
+  /* Nudges downward, in the direction the file is about to travel. */
+  transform: translateY(2px);
+}
+
+.hero__resume-text {
+  position: relative;
+}
+
+.hero__resume-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 460ms var(--ease-out-expo);
+}
+
+.hero__resume:hover .hero__resume-text::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
 /* --- Portrait -------------------------------------------------- */
 .hero__portrait {
   position: relative;
@@ -258,9 +320,9 @@
   width: clamp(240px, 26vw, 350px);
   aspect-ratio: 4 / 5;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--edge-dark-strong);
+  border: 1px solid var(--edge-strong);
   overflow: hidden;
-  background: var(--ink-800);
+  background: var(--surface-raised);
   transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   transform-style: preserve-3d;
   transition: transform 500ms var(--ease-out-quart),
@@ -270,9 +332,9 @@
 }
 
 .hero__frame:hover {
-  border-color: var(--clay-edge);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(181, 84, 30, 0.14);
+  border-color: var(--accent-edge);
+  box-shadow: var(--shadow-card),
+    0 0 0 1px var(--accent-edge);
 }
 
 .hero__frame img {
@@ -298,7 +360,7 @@
   opacity: 0;
   background: radial-gradient(
     38% 34% at calc(var(--px, 0.5) * 100%) calc(var(--py, 0.5) * 100%),
-    rgba(255, 255, 255, 0.16),
+    var(--sheen),
     transparent 68%
   );
   transition: opacity 420ms var(--ease-out-quart);
@@ -314,8 +376,8 @@
   left: 12px;
   width: 26px;
   height: 26px;
-  border-top: 1px solid var(--clay-400);
-  border-left: 1px solid var(--clay-400);
+  border-top: 1px solid var(--accent-text);
+  border-left: 1px solid var(--accent-text);
   opacity: 0.7;
   pointer-events: none;
 }
@@ -325,14 +387,14 @@
   left: -14px;
   bottom: -16px;
   padding: 0.6rem 1.1rem;
-  background: var(--clay-500);
-  color: #fff;
+  background: var(--accent-solid);
+  color: var(--accent-on-solid);
   font-size: var(--size-micro);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   border-radius: var(--radius-xs);
-  box-shadow: 0 14px 34px rgba(181, 84, 30, 0.3);
+  box-shadow: var(--shadow-accent-strong);
   white-space: nowrap;
   animation: floatSlow 5.5s var(--ease-in-out-quart) infinite;
 }
@@ -346,7 +408,7 @@
   background: linear-gradient(
     to bottom,
     transparent,
-    var(--clay-400),
+    var(--accent-text),
     transparent
   );
 }
@@ -359,7 +421,7 @@
   font-size: 4.5rem;
   font-weight: 700;
   letter-spacing: -0.04em;
-  color: rgba(255, 255, 255, 0.035);
+  color: var(--wash-ghost);
   pointer-events: none;
   user-select: none;
 }
@@ -372,7 +434,7 @@
   font-family: var(--font-display);
   font-size: 0.8rem;
   letter-spacing: 0.14em;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
   opacity: 0;
   transition: opacity 900ms var(--ease-out-quart) 1000ms;
 }

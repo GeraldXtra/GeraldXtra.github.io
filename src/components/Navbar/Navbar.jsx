@@ -5,9 +5,10 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import scrollToId from "../../utils/scrollToId";
 import Icon from "../common/Icon";
 import Magnetic from "../common/Magnetic";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import "./Navbar.css";
 
-export default function Navbar({ scrolled, activeId }) {
+export default function Navbar({ scrolled, activeId, theme, onToggleTheme }) {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 981px)");
   const burgerRef = useRef(null);
@@ -134,6 +135,8 @@ export default function Navbar({ scrolled, activeId }) {
         </nav>
 
         <div className="nav__end">
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+
           <Magnetic strength={0.22} max={9}>
             <a
               href="#contact"
@@ -185,6 +188,9 @@ export default function Navbar({ scrolled, activeId }) {
           ))}
         </nav>
 
+        {/* No theme toggle down here on purpose. The one in the header stays
+            visible at every width, and a second copy would put an identical
+            control into the overlay's focus cycle. */}
         <div className="menu__foot">
           <span className="menu__foot-note">{profile.location}</span>
           <div className="menu__socials">

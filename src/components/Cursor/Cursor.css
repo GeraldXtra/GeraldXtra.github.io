@@ -16,14 +16,14 @@
 .cursor-dot {
   width: 6px;
   height: 6px;
-  background: var(--clay-400);
+  background: var(--accent-text);
   will-change: transform;
 }
 
 .cursor-ring {
   width: 34px;
   height: 34px;
-  border: 1px solid var(--clay-edge);
+  border: 1px solid var(--accent-edge);
   will-change: transform;
 }
 
@@ -35,20 +35,20 @@
 .cursor-dot.is-hovering {
   width: 4px;
   height: 4px;
-  background: var(--bone-100);
+  background: var(--fg);
 }
 
 .cursor-ring.is-hovering {
   width: 58px;
   height: 58px;
-  border-color: var(--clay-400);
-  background: rgba(181, 84, 30, 0.09);
+  border-color: var(--accent-text);
+  background: var(--accent-wash);
 }
 
 .cursor-ring.is-pressed {
   width: 26px;
   height: 26px;
-  background: rgba(181, 84, 30, 0.2);
+  background: var(--accent-wash-strong);
 }
 
 /* The native pointer only steps aside once the replacement is on screen. */

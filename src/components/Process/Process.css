@@ -5,7 +5,7 @@
 
 .process {
   position: relative;
-  border-top: 1px solid var(--edge-dark);
+  border-top: 1px solid var(--edge);
 }
 
 .process::before {
@@ -15,7 +15,7 @@
   pointer-events: none;
   background: radial-gradient(
     54% 44% at 82% 84%,
-    rgba(59, 94, 69, 0.1),
+    var(--glow-cool),
     transparent 64%
   );
 }
@@ -51,15 +51,15 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  border: 1px solid var(--edge-dark-strong);
-  background: var(--ink-850);
+  border: 1px solid var(--edge-strong);
+  background: var(--surface);
   transition: border-color 620ms var(--ease-out-quart) var(--step-delay, 0ms),
     box-shadow 620ms var(--ease-out-quart) var(--step-delay, 0ms);
 }
 
 .step.is-visible .step__node {
-  border-color: var(--clay-400);
-  box-shadow: 0 0 0 5px rgba(181, 84, 30, 0.12);
+  border-color: var(--accent-text);
+  box-shadow: 0 0 0 5px var(--accent-wash-strong);
 }
 
 .step__node-core {
@@ -74,7 +74,7 @@
 
 .step.is-visible .step__node-core {
   transform: none;
-  background: var(--clay-400);
+  background: var(--accent-text);
 }
 
 /* The connector between one node and the next. */
@@ -84,8 +84,8 @@
   margin-left: 2px;
   background: linear-gradient(
     90deg,
-    var(--clay-400),
-    var(--edge-dark) 70%,
+    var(--accent-text),
+    var(--edge) 70%,
     transparent
   );
   transform: scaleX(0);
@@ -121,7 +121,7 @@
   font-size: var(--size-micro);
   font-weight: 500;
   letter-spacing: 0.28em;
-  color: var(--clay-400);
+  color: var(--accent-text);
 }
 
 .step__title {
@@ -130,14 +130,14 @@
   font-size: var(--size-h4);
   font-weight: 600;
   letter-spacing: -0.015em;
-  color: var(--bone-100);
+  color: var(--fg);
 }
 
 .step__body {
   margin-top: 0.7rem;
   font-size: var(--size-small);
   line-height: 1.85;
-  color: var(--text-on-dark-soft);
+  color: var(--fg-soft);
 }
 
 .step__meta {
@@ -146,18 +146,18 @@
   gap: 0.55rem;
   margin-top: 1.1rem;
   padding-top: 0.9rem;
-  border-top: 1px solid var(--edge-dark);
+  border-top: 1px solid var(--edge);
   font-size: var(--size-micro);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
 }
 
 .step__meta-mark {
   width: 4px;
   height: 4px;
   flex-shrink: 0;
-  background: var(--brass-500);
+  background: var(--accent-third-solid);
   transform: rotate(45deg);
 }
 
@@ -207,8 +207,8 @@
     margin-top: 6px;
     background: linear-gradient(
       to bottom,
-      var(--clay-400),
-      var(--edge-dark) 70%,
+      var(--accent-text),
+      var(--edge) 70%,
       transparent
     );
     transform: scaleY(0);

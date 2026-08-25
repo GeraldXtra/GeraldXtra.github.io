@@ -15,6 +15,7 @@ import Skills from "./components/Skills/Skills";
 import useLockScroll from "./hooks/useLockScroll";
 import usePageScroll from "./hooks/usePageScroll";
 import useScrollSpy from "./hooks/useScrollSpy";
+import useTheme from "./hooks/useTheme";
 
 const SECTION_IDS = [
   "hero",
@@ -37,6 +38,7 @@ export default function App() {
   // re render this tree. See usePageScroll.
   const { scrolled, deep } = usePageScroll();
   const activeId = useScrollSpy(SECTION_IDS);
+  const { theme, toggle: toggleTheme } = useTheme();
 
   // The curtain hides the page rather than blocking it, so without this a flick
   // of the wheel during those three seconds would land the visitor halfway down
@@ -65,7 +67,12 @@ export default function App() {
         Skip to the content
       </a>
 
-      <Navbar scrolled={scrolled} activeId={activeId} />
+      <Navbar
+        scrolled={scrolled}
+        activeId={activeId}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
 
       {/* tabIndex lets the skip link place real focus here. Without it Firefox
           and Safari scroll to the landmark but leave focus on the link, so the

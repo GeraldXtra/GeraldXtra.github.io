@@ -1,17 +1,25 @@
 /* ============================================================
    DESIGN TOKENS
-   The whole visual language lives here. Nothing below this file
-   invents a colour, a size or a curve of its own.
+   Two tiers, and the split is what makes theming possible.
+
+   The PALETTE is the brand. Those values never change: clay is
+   always clay, ink-900 is always that exact near black.
+
+   The SEMANTIC tier says which palette entry plays which role on
+   the page. Only that tier is redefined per theme, so switching
+   between light and dark is a matter of reassigning roles rather
+   than rewriting components.
+
+   Nothing below this file should reach for a palette value where a
+   semantic one exists, or it will not follow the theme.
    ============================================================ */
 
 :root {
-  /* Tells the browser this page is dark by construction. Without it Chromium
-     paints autofilled form fields in its light palette, which drops two bright
-     rectangles into the middle of the contact panel. It also fixes the native
-     scrollbar and the textarea resize grip. */
-  color-scheme: dark;
+  /* ---------------------------------------------------------
+     PALETTE, fixed in both themes
+     --------------------------------------------------------- */
 
-  /* --- Surfaces, darkest to lightest ------------------------ */
+  /* Surfaces, darkest to lightest */
   --ink-950: #0b0a08;
   --ink-900: #100e0c;
   --ink-850: #141210;
@@ -26,52 +34,39 @@
   --bone-300: #ded5c3;
   --bone-400: #cabfa9;
 
-  /* --- Accents ---------------------------------------------- */
+  /* Accents */
+  --clay-700: #7a3709;
   --clay-600: #94430f;
   --clay-500: #b5541e;
   --clay-400: #d4723a;
   --clay-300: #e28f5c;
 
+  --moss-700: #223b29;
   --moss-600: #2f4c38;
   --moss-500: #3b5e45;
   --moss-400: #4e7a5c;
   --moss-300: #6b9c7a;
 
+  --brass-700: #7d6122;
+  --brass-600: #9c7a2c;
   --brass-500: #c49a3c;
   --brass-400: #d6ae57;
 
+  --stone-600: #645649;
   --stone-500: #7d6e5e;
   --stone-400: #9a8a78;
 
   --signal-error: #e0625c;
+  --signal-error-dark: #b8433d;
   --signal-ok: #6dbf8a;
+  --signal-ok-dark: #3f8a5c;
 
-  /* --- Semantic text ---------------------------------------- */
-  --text-on-dark: #f2ede3;
-  --text-on-dark-soft: #ab9f92;
-  --text-on-dark-faint: #6d6459;
-  --text-on-light: #1c1714;
-  --text-on-light-soft: #5b5048;
-  --text-on-light-faint: #857868;
-
-  /* --- Hairlines and edges ---------------------------------- */
-  --edge-dark: rgba(255, 255, 255, 0.09);
-  --edge-dark-strong: rgba(255, 255, 255, 0.16);
-  --edge-light: rgba(28, 23, 20, 0.11);
-  --edge-light-strong: rgba(28, 23, 20, 0.2);
-
-  /* --- Accent washes ---------------------------------------- */
-  --clay-wash: rgba(181, 84, 30, 0.08);
-  --clay-wash-strong: rgba(181, 84, 30, 0.16);
-  --clay-edge: rgba(181, 84, 30, 0.32);
-  --moss-wash: rgba(59, 94, 69, 0.1);
-  --moss-edge: rgba(59, 94, 69, 0.34);
-
-  /* --- Type families ---------------------------------------- */
+  /* ---------------------------------------------------------
+     Type, rhythm and motion. Identical in both themes.
+     --------------------------------------------------------- */
   --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
   --font-body: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
 
-  /* --- Type scale, fluid between 360px and 1600px ----------- */
   --size-display: clamp(3rem, 1.6rem + 6.2vw, 6.5rem);
   --size-h2: clamp(2rem, 1.24rem + 3.4vw, 3.6rem);
   --size-h3: clamp(1.375rem, 1.1rem + 1.2vw, 1.9rem);
@@ -81,7 +76,6 @@
   --size-small: 0.8125rem;
   --size-micro: 0.6875rem;
 
-  /* --- Rhythm ----------------------------------------------- */
   --gutter: clamp(1.5rem, 5vw, 6rem);
   --section-y: clamp(5.5rem, 9vw, 9.5rem);
   --shell-max: 1360px;
@@ -96,21 +90,12 @@
   --space-8: 3.5rem;
   --space-9: 5rem;
 
-  /* --- Corners ---------------------------------------------- */
   --radius-xs: 2px;
   --radius-sm: 3px;
   --radius-md: 6px;
   --radius-lg: 10px;
   --radius-pill: 999px;
 
-  /* --- Depth ------------------------------------------------ */
-  --shadow-soft: 0 1px 2px rgba(11, 10, 8, 0.06),
-    0 8px 24px rgba(11, 10, 8, 0.07);
-  --shadow-lift: 0 2px 4px rgba(11, 10, 8, 0.06),
-    0 24px 56px rgba(11, 10, 8, 0.14);
-  --shadow-dark: 0 24px 60px rgba(0, 0, 0, 0.45);
-
-  /* --- Motion ----------------------------------------------- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
@@ -122,7 +107,6 @@
   --dur-reveal: 900ms;
   --dur-curtain: 1100ms;
 
-  /* --- Layering --------------------------------------------- */
   --z-grain: 1;
   --z-raise: 5;
   --z-backtop: 60;
@@ -130,6 +114,274 @@
   --z-nav: 100;
   --z-cursor: 9000;
   --z-preloader: 9500;
+}
+
+/* ============================================================
+   SEMANTIC TIER, dark
+   Also the fallback: a page with no data-theme attribute lands here.
+   ============================================================ */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* The page's own surfaces */
+  --surface: var(--ink-850);
+  --surface-deep: var(--ink-900);
+  --surface-raised: var(--ink-800);
+  --surface-raised-hover: var(--ink-750);
+  --surface-footer: var(--ink-950);
+
+  /* The alternating band that contrasts against the surfaces above */
+  --surface-alt: var(--bone-100);
+  --surface-alt-deep: var(--bone-200);
+  --surface-alt-raised: #ffffff;
+  --surface-alt-sunken: var(--bone-200);
+  --surface-alt-sunken-strong: var(--bone-300);
+
+  /* An element that deliberately opposes whatever section it sits in,
+     such as the profile card on the About band. */
+  --surface-inverse: var(--ink-850);
+  --fg-inverse: var(--bone-100);
+  --fg-inverse-soft: #ab9f92;
+  --edge-inverse: rgba(255, 255, 255, 0.09);
+
+  /* Accents drawn ON that inverse surface. These deliberately do NOT change
+     between themes: the surface under them is ink either way, so following the
+     page theme would darken them into it. */
+  --accent-on-inverse: var(--clay-400);
+  --accent-alt-on-inverse: var(--moss-300);
+  --accent-grad-from-inverse: var(--clay-600);
+  --accent-grad-to-inverse: var(--clay-400);
+
+  /* Text on --surface and --surface-deep */
+  --fg: #f2ede3;
+  --fg-soft: #ab9f92;
+  --fg-faint: #6d6459;
+
+  /* Text on --surface-alt */
+  --fg-alt: #1c1714;
+  --fg-alt-soft: #5b5048;
+  --fg-alt-faint: #857868;
+
+  /* Hairlines */
+  --edge: rgba(255, 255, 255, 0.09);
+  --edge-strong: rgba(255, 255, 255, 0.16);
+  --edge-alt: rgba(28, 23, 20, 0.11);
+  --edge-alt-strong: rgba(28, 23, 20, 0.2);
+
+  /* Accents, split by job. The text variants have to clear a contrast
+     threshold against the current surface, which is why they differ
+     between themes while the solid fills do not. */
+  --accent-text: var(--clay-400);
+  --accent-text-strong: var(--clay-300);
+  --accent-solid: var(--clay-500);
+  --accent-solid-hover: var(--clay-600);
+  --accent-on-solid: #ffffff;
+  --accent-alt-text: var(--moss-300);
+  --accent-alt-solid: var(--moss-500);
+  --accent-third-text: var(--brass-500);
+  --accent-third-solid: var(--brass-500);
+
+  /* Accents rendered on the alternating band instead */
+  --accent-text-onalt: var(--clay-500);
+  --accent-text-onalt-soft: var(--clay-400);
+  --accent-alt-text-onalt: var(--moss-500);
+  --accent-alt-mid: var(--moss-400);
+
+  /* Gradient stops for the meters, the seams and the progress bar. */
+  --accent-grad-from: var(--clay-600);
+  --accent-grad-to: var(--clay-400);
+  --accent-alt-grad-from: var(--moss-600);
+  --accent-alt-grad-to: var(--moss-400);
+
+  /* Text sitting on a photograph, which is dark in either theme. */
+  --fg-on-media: var(--bone-50);
+
+  --accent-wash: rgba(181, 84, 30, 0.08);
+  --accent-wash-strong: rgba(181, 84, 30, 0.16);
+  --accent-edge: rgba(181, 84, 30, 0.32);
+  --accent-alt-wash: rgba(59, 94, 69, 0.1);
+  --accent-alt-edge: rgba(59, 94, 69, 0.34);
+
+  /* Translucent fills layered over a surface */
+  --wash-subtle: rgba(255, 255, 255, 0.035);
+  --wash-faint: rgba(255, 255, 255, 0.06);
+  --wash-track: rgba(255, 255, 255, 0.07);
+  --wash-ring: rgba(255, 255, 255, 0.08);
+  --wash-ghost: rgba(255, 255, 255, 0.035);
+  --wash-alt: rgba(255, 255, 255, 0.5);
+  --wash-alt-soft: rgba(255, 255, 255, 0.45);
+  --sheen: rgba(255, 255, 255, 0.16);
+  --sheen-strong: rgba(255, 255, 255, 0.55);
+
+  /* Frosted panels */
+  --scrim-nav: rgba(16, 14, 12, 0.86);
+  --scrim-float: rgba(20, 18, 16, 0.72);
+
+  /* Placeholder text inside form fields */
+  --placeholder: rgba(245, 240, 230, 0.24);
+
+  /* Validation states */
+  --error-text: var(--signal-error);
+  --error-edge: rgba(224, 98, 92, 0.55);
+  --error-edge-soft: rgba(224, 98, 92, 0.28);
+  --error-wash: rgba(224, 98, 92, 0.05);
+  --error-wash-strong: rgba(224, 98, 92, 0.09);
+  --error-ring: rgba(224, 98, 92, 0.12);
+  --ok-text: var(--signal-ok);
+
+  /* Depth */
+  --shadow-soft: 0 1px 2px rgba(11, 10, 8, 0.06),
+    0 8px 24px rgba(11, 10, 8, 0.07);
+  --shadow-lift: 0 2px 4px rgba(11, 10, 8, 0.06),
+    0 24px 56px rgba(11, 10, 8, 0.14);
+  --shadow-dark: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 26px 60px rgba(0, 0, 0, 0.4);
+  --shadow-accent: 0 10px 30px rgba(181, 84, 30, 0.24);
+  --shadow-accent-strong: 0 18px 44px rgba(181, 84, 30, 0.34);
+
+  /* Ambient washes behind sections */
+  --glow-warm: rgba(181, 84, 30, 0.16);
+  --glow-warm-soft: rgba(181, 84, 30, 0.11);
+  --glow-cool: rgba(59, 94, 69, 0.12);
+  --glow-cool-soft: rgba(59, 94, 69, 0.09);
+  --glow-third: rgba(196, 154, 60, 0.07);
+  --glow-onalt: rgba(181, 84, 30, 0.06);
+
+  /* Film grain */
+  --grain-opacity: 0.05;
+  --grain-blend: overlay;
+
+  /* Scrollbar */
+  --scrollbar-track: var(--ink-900);
+  --scrollbar-thumb: var(--ink-600);
+}
+
+/* ============================================================
+   SEMANTIC TIER, light
+   Only roles are reassigned. Every palette value above is untouched.
+   ============================================================ */
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --surface: var(--bone-50);
+  --surface-deep: #f2ece0;
+  --surface-raised: #ffffff;
+  --surface-raised-hover: #fffdf8;
+  --surface-footer: var(--bone-200);
+
+  --surface-alt: #ffffff;
+  --surface-alt-deep: var(--bone-100);
+  --surface-alt-raised: #ffffff;
+  --surface-alt-sunken: var(--bone-200);
+  --surface-alt-sunken-strong: var(--bone-300);
+
+  /* The profile card stays dark on purpose. It is the one block of ink
+     in the light theme and it keeps the page from going flat. */
+  --surface-inverse: var(--ink-850);
+  --fg-inverse: var(--bone-100);
+  --fg-inverse-soft: #ab9f92;
+  --edge-inverse: rgba(255, 255, 255, 0.09);
+
+  /* Identical to the dark theme, and that is the point. See the note there. */
+  --accent-on-inverse: var(--clay-400);
+  --accent-alt-on-inverse: var(--moss-300);
+  --accent-grad-from-inverse: var(--clay-600);
+  --accent-grad-to-inverse: var(--clay-400);
+
+  --fg: #221c18;
+  --fg-soft: #5b5048;
+  --fg-faint: #877a6b;
+
+  --fg-alt: #1c1714;
+  --fg-alt-soft: #5b5048;
+  --fg-alt-faint: #857868;
+
+  --edge: rgba(28, 23, 20, 0.12);
+  --edge-strong: rgba(28, 23, 20, 0.22);
+  --edge-alt: rgba(28, 23, 20, 0.11);
+  --edge-alt-strong: rgba(28, 23, 20, 0.2);
+
+  /* Clay 400 sits at roughly 2.9:1 on a cream ground, which is under the
+     threshold for the small uppercase labels it is used on. The darker
+     step clears it comfortably. */
+  --accent-text: var(--clay-600);
+  --accent-text-strong: var(--clay-700);
+  --accent-solid: var(--clay-500);
+  --accent-solid-hover: var(--clay-600);
+  --accent-on-solid: #ffffff;
+  --accent-alt-text: var(--moss-600);
+  --accent-alt-solid: var(--moss-500);
+  --accent-third-text: var(--brass-700);
+  --accent-third-solid: var(--brass-500);
+
+  --accent-text-onalt: var(--clay-600);
+  --accent-text-onalt-soft: var(--clay-500);
+  --accent-alt-text-onalt: var(--moss-600);
+  --accent-alt-mid: var(--moss-500);
+
+  --accent-grad-from: var(--clay-700);
+  --accent-grad-to: var(--clay-500);
+  --accent-alt-grad-from: var(--moss-700);
+  --accent-alt-grad-to: var(--moss-500);
+
+  --fg-on-media: var(--bone-50);
+
+  --accent-wash: rgba(181, 84, 30, 0.07);
+  --accent-wash-strong: rgba(181, 84, 30, 0.14);
+  --accent-edge: rgba(181, 84, 30, 0.3);
+  --accent-alt-wash: rgba(59, 94, 69, 0.08);
+  --accent-alt-edge: rgba(59, 94, 69, 0.3);
+
+  --wash-subtle: rgba(28, 23, 20, 0.03);
+  --wash-faint: rgba(28, 23, 20, 0.05);
+  --wash-track: rgba(28, 23, 20, 0.08);
+  --wash-ring: rgba(28, 23, 20, 0.1);
+  --wash-ghost: rgba(28, 23, 20, 0.04);
+  --wash-alt: rgba(255, 255, 255, 0.72);
+  --wash-alt-soft: rgba(255, 255, 255, 0.6);
+  --sheen: rgba(255, 255, 255, 0.5);
+  --sheen-strong: rgba(255, 255, 255, 0.75);
+
+  --scrim-nav: rgba(251, 248, 242, 0.88);
+  --scrim-float: rgba(255, 255, 255, 0.8);
+
+  --placeholder: rgba(28, 23, 20, 0.35);
+
+  /* The red has to darken on a pale ground to stay readable. */
+  --error-text: var(--signal-error-dark);
+  --error-edge: rgba(184, 67, 61, 0.5);
+  --error-edge-soft: rgba(184, 67, 61, 0.3);
+  --error-wash: rgba(184, 67, 61, 0.05);
+  --error-wash-strong: rgba(184, 67, 61, 0.08);
+  --error-ring: rgba(184, 67, 61, 0.16);
+  --ok-text: var(--signal-ok-dark);
+
+  --shadow-soft: 0 1px 2px rgba(60, 45, 30, 0.05),
+    0 8px 24px rgba(60, 45, 30, 0.06);
+  --shadow-lift: 0 2px 4px rgba(60, 45, 30, 0.05),
+    0 24px 56px rgba(60, 45, 30, 0.12);
+  --shadow-dark: 0 20px 50px rgba(60, 45, 30, 0.16);
+  --shadow-card: 0 22px 50px rgba(60, 45, 30, 0.14);
+  --shadow-accent: 0 10px 30px rgba(181, 84, 30, 0.2);
+  --shadow-accent-strong: 0 18px 44px rgba(181, 84, 30, 0.28);
+
+  --glow-warm: rgba(181, 84, 30, 0.09);
+  --glow-warm-soft: rgba(181, 84, 30, 0.07);
+  --glow-cool: rgba(59, 94, 69, 0.07);
+  --glow-cool-soft: rgba(59, 94, 69, 0.05);
+  --glow-third: rgba(196, 154, 60, 0.09);
+  --glow-onalt: rgba(181, 84, 30, 0.05);
+
+  /* Overlay blending turns muddy on a pale ground, and the texture needs
+     to be fainter to read as paper rather than dirt. */
+  --grain-opacity: 0.035;
+  --grain-blend: multiply;
+
+  --scrollbar-track: var(--bone-200);
+  --scrollbar-thumb: var(--bone-400);
 }
 
 /* Anyone who asks their system for calmer motion gets it, everywhere. */

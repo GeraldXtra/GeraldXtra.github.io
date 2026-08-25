@@ -81,12 +81,12 @@ p {
 }
 
 ::selection {
-  background: var(--clay-500);
-  color: #fff;
+  background: var(--accent-solid);
+  color: var(--accent-on-solid);
 }
 
 :focus-visible {
-  outline: 2px solid var(--clay-400);
+  outline: 2px solid var(--accent-text);
   outline-offset: 3px;
   border-radius: var(--radius-xs);
 }

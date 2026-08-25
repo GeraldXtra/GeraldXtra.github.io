@@ -19,7 +19,7 @@
   left: 0;
   right: 0;
   height: 50.5%;
-  background: var(--ink-900);
+  background: var(--surface);
   transition: transform var(--dur-curtain) var(--ease-in-out-quart);
   will-change: transform;
 }
@@ -59,14 +59,14 @@
   font-size: clamp(2.75rem, 8vw, 4rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--bone-100);
+  color: var(--fg);
   opacity: 0;
   transform: translate3d(0, 16px, 0);
   animation: riseIn 700ms var(--ease-out-expo) 120ms forwards;
 }
 
 .preloader__dot {
-  color: var(--clay-500);
+  color: var(--accent-solid);
 }
 
 .preloader__meta {
@@ -83,21 +83,21 @@
   font-size: var(--size-micro);
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
 }
 
 .preloader__count {
   font-family: var(--font-display);
   font-size: 0.95rem;
   letter-spacing: 0.14em;
-  color: var(--clay-400);
+  color: var(--accent-text);
   font-variant-numeric: tabular-nums;
 }
 
 .preloader__track {
   margin-top: var(--space-3);
   height: 1px;
-  background: var(--edge-dark);
+  background: var(--edge);
   overflow: hidden;
   opacity: 0;
   animation: fadeIn 600ms var(--ease-out-quart) 420ms forwards;
@@ -106,7 +106,7 @@
 .preloader__fill {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--clay-500), var(--brass-500));
+  background: linear-gradient(90deg, var(--accent-solid), var(--accent-third-solid));
   transform-origin: left center;
   transform: scaleX(0);
 }

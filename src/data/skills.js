@@ -1,7 +1,7 @@
 export const skills = {
-  eyebrow: "Expertise",
+  eyebrow: "What I use",
   title: ["Skills", "and tools"],
-  lede: "An honest read of where I stand today. The numbers move as the work does.",
+  lede: "Where I'm at right now. These move as I keep working.",
   columns: [
     {
       id: "development",

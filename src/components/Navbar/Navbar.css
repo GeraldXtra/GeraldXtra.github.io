@@ -23,10 +23,10 @@
 
 .nav.is-scrolled {
   height: 66px;
-  background: rgba(16, 14, 12, 0.86);
+  background: var(--scrim-nav);
   backdrop-filter: blur(16px) saturate(140%);
-  border-bottom-color: var(--edge-dark);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  border-bottom-color: var(--edge);
+  box-shadow: var(--shadow-card);
 }
 
 /* --- Wordmark ----------------------------------------------- */
@@ -35,21 +35,21 @@
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--bone-100);
+  color: var(--fg);
   line-height: 1;
   transition: color var(--dur-base) var(--ease-out-quart);
 }
 
 .nav__mark-dot {
   display: inline-block;
-  color: var(--clay-500);
+  color: var(--accent-solid);
   transition: transform var(--dur-base) var(--ease-spring),
     color var(--dur-base) var(--ease-out-quart);
 }
 
 .nav__mark:hover .nav__mark-dot,
 .nav__mark.is-current .nav__mark-dot {
-  color: var(--clay-400);
+  color: var(--accent-text);
   transform: translateY(-2px) scale(1.25);
 }
 
@@ -75,7 +75,7 @@
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-on-dark-soft);
+  color: var(--fg-soft);
   transition: color var(--dur-base) var(--ease-out-quart);
 }
 
@@ -101,7 +101,7 @@
 
 .nav__link:hover,
 .nav__link.is-active {
-  color: var(--bone-100);
+  color: var(--fg);
 }
 
 .nav__link::before {
@@ -111,7 +111,7 @@
   bottom: 0;
   width: 100%;
   height: 1px;
-  background: var(--clay-400);
+  background: var(--accent-text);
   transform: scaleX(0);
   transform-origin: right center;
   transition: transform 420ms var(--ease-out-expo);
@@ -129,19 +129,27 @@
   gap: var(--space-4);
 }
 
+/* The toggle survives the breakpoint that hides the links and the call to
+   action, so it is reachable at every width without opening the menu. */
+@media (max-width: 980px) {
+  .nav__end {
+    gap: var(--space-3);
+  }
+}
+
 .nav__cta {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
   padding: 0.6rem 1.15rem;
-  border: 1px solid var(--clay-edge);
+  border: 1px solid var(--accent-edge);
   border-radius: var(--radius-xs);
   font-size: var(--size-micro);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--clay-400);
+  color: var(--accent-text);
   overflow: hidden;
   isolation: isolate;
   transition: color var(--dur-base) var(--ease-out-quart),
@@ -154,14 +162,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--clay-500);
+  background: var(--accent-solid);
   transform: translate3d(0, 101%, 0);
   transition: transform 440ms var(--ease-in-out-quart);
 }
 
 .nav__cta:hover {
-  color: #fff;
-  border-color: var(--clay-500);
+  color: var(--accent-on-solid);
+  border-color: var(--accent-solid);
 }
 
 .nav__cta:hover::after {
@@ -191,7 +199,7 @@
 .burger__bar {
   display: block;
   height: 1.5px;
-  background: var(--bone-100);
+  background: var(--fg);
   border-radius: 2px;
   transition: transform 420ms var(--ease-out-expo),
     width 420ms var(--ease-out-expo), background 300ms var(--ease-out-quart);
@@ -231,7 +239,7 @@
   justify-content: center;
   gap: var(--space-8);
   padding: 5.5rem var(--gutter) 2.5rem;
-  background: var(--ink-900);
+  background: var(--surface-deep);
   opacity: 0;
   visibility: hidden;
   clip-path: inset(0 0 100% 0);
@@ -256,10 +264,10 @@
   pointer-events: none;
   background: radial-gradient(
       70% 55% at 88% 10%,
-      rgba(181, 84, 30, 0.15),
+      var(--glow-warm),
       transparent 62%
     ),
-    radial-gradient(60% 50% at 6% 92%, rgba(59, 94, 69, 0.13), transparent 60%);
+    radial-gradient(60% 50% at 6% 92%, var(--glow-cool), transparent 60%);
 }
 
 .menu__links {
@@ -275,8 +283,8 @@
   align-items: baseline;
   gap: var(--space-4);
   padding: clamp(0.5rem, 1.4vw, 0.85rem) 0;
-  border-bottom: 1px solid var(--edge-dark);
-  color: var(--text-on-dark-soft);
+  border-bottom: 1px solid var(--edge);
+  color: var(--fg-soft);
   opacity: 0;
   transform: translate3d(0, 24px, 0);
   transition: color var(--dur-base) var(--ease-out-quart),
@@ -292,7 +300,7 @@
 .menu__index {
   font-size: var(--size-micro);
   letter-spacing: 0.2em;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
   transition: color var(--dur-base) var(--ease-out-quart);
 }
 
@@ -316,7 +324,7 @@
 
 .menu__link:hover,
 .menu__link.is-active {
-  color: var(--bone-100);
+  color: var(--fg);
 }
 
 .menu__link:hover .menu__label {
@@ -325,13 +333,13 @@
 
 .menu__link:hover .menu__index,
 .menu__link.is-active .menu__index {
-  color: var(--clay-400);
+  color: var(--accent-text);
 }
 
 .menu__link:hover .menu__arrow {
   opacity: 1;
   transform: none;
-  color: var(--clay-400);
+  color: var(--accent-text);
 }
 
 .menu__foot {
@@ -356,7 +364,7 @@
   font-size: var(--size-micro);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
 }
 
 .menu__socials {
@@ -369,17 +377,17 @@
   place-items: center;
   width: 40px;
   height: 40px;
-  border: 1px solid var(--edge-dark);
+  border: 1px solid var(--edge);
   border-radius: var(--radius-xs);
-  color: var(--text-on-dark-soft);
+  color: var(--fg-soft);
   transition: color var(--dur-base) var(--ease-out-quart),
     border-color var(--dur-base) var(--ease-out-quart),
     transform var(--dur-base) var(--ease-spring);
 }
 
 .menu__social:hover {
-  color: var(--clay-400);
-  border-color: var(--clay-edge);
+  color: var(--accent-text);
+  border-color: var(--accent-edge);
   transform: translateY(-3px);
 }
 

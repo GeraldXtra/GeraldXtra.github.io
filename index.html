@@ -40,6 +40,27 @@
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Runs before the first paint so the page never flashes the wrong theme.
+         React reads the attribute this leaves behind rather than deciding
+         again, which keeps the two in step. Kept inline and tiny on purpose:
+         an external file would be fetched too late to help. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("gerald-theme");
+          var theme =
+            saved === "light" || saved === "dark"
+              ? saved
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

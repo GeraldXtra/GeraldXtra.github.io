@@ -1,15 +1,15 @@
 export const services = {
   eyebrow: "What I do",
-  title: ["Two disciplines,", "one person to brief"],
+  title: ["Design and code,", "same pair of hands"],
   lede:
-    "Most projects stall in the handover between the person who drew it and the person who built it. There is no handover here.",
+    "Projects usually lose their time in the handover between the person who drew it and the person who built it. Here there isn't one.",
   items: [
     {
       id: "development",
       index: "01",
       icon: "code",
       title: "Web Development",
-      body: "Marketing sites, dashboards and web apps built from an empty folder. Semantic markup, keyboard support that actually works, and a front end that stays composed on a mid range phone.",
+      body: "Marketing sites, dashboards and web apps, built from an empty folder. Proper markup, keyboard support that actually works, and a front end that still behaves on a cheap phone.",
       points: ["React and Vite", "Responsive layouts", "Clean, readable code"],
     },
     {
@@ -17,7 +17,7 @@ export const services = {
       index: "02",
       icon: "pen",
       title: "Interface Design",
-      body: "Wireframes through to finished screens in Figma. Type, spacing and colour chosen on purpose, then handed over as a file a developer can build from without guessing.",
+      body: "Wireframes through to finished screens in Figma. Type, spacing and colour picked on purpose, then handed over as a file a developer can build from without guessing.",
       points: ["Figma workflow", "Prototypes", "Developer ready files"],
     },
     {
@@ -25,7 +25,7 @@ export const services = {
       index: "03",
       icon: "grid",
       title: "Design Systems",
-      body: "Components, tokens and the rules around them written down once, so the tenth screen still looks like the first one and new work stops being a negotiation.",
+      body: "Components, tokens and the rules around them, written down once. The tenth screen still looks like the first, and nobody has to argue about spacing again.",
       points: ["Component libraries", "Design tokens", "Usage guidelines"],
     },
     {
@@ -33,7 +33,7 @@ export const services = {
       index: "04",
       icon: "refresh",
       title: "Rebuilds and Rescues",
-      body: "Sites that grew sideways, went slow, or drifted away from the brand. I read what is already there, keep what earns its place, and put the rest back together properly.",
+      body: "Sites that grew sideways, got slow, or stopped looking like the brand. I read what's already there, keep what's worth keeping, and rebuild the rest properly.",
       points: ["Performance work", "Refactors", "Visual refresh"],
     },
   ],

@@ -3,7 +3,7 @@
    ============================================================ */
 
 .services {
-  border-top: 1px solid var(--edge-dark);
+  border-top: 1px solid var(--edge);
 }
 
 .services__grid {
@@ -22,9 +22,9 @@
   display: flex;
   flex-direction: column;
   padding: clamp(1.5rem, 2.4vw, 2rem);
-  border: 1px solid var(--edge-dark);
+  border: 1px solid var(--edge);
   border-radius: var(--radius-md);
-  background: var(--ink-800);
+  background: var(--surface-raised);
   overflow: hidden;
   isolation: isolate;
   transition: transform var(--dur-slow) var(--ease-out-quart),
@@ -35,9 +35,9 @@
 
 .service__inner:hover {
   transform: translateY(-6px);
-  border-color: var(--clay-edge);
-  background: var(--ink-750);
-  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.4);
+  border-color: var(--accent-edge);
+  background: var(--surface-raised-hover);
+  box-shadow: var(--shadow-card);
 }
 
 /* A soft light that tracks the pointer across the card face. */
@@ -49,7 +49,7 @@
   pointer-events: none;
   background: radial-gradient(
     46% 42% at calc(var(--px, 0.5) * 100%) calc(var(--py, 0.5) * 100%),
-    rgba(181, 84, 30, 0.16),
+    var(--glow-warm),
     transparent 70%
   );
   transition: opacity 460ms var(--ease-out-quart);
@@ -65,7 +65,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--clay-500), var(--brass-500));
+  background: linear-gradient(90deg, var(--accent-solid), var(--accent-third-solid));
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 620ms var(--ease-out-expo);
@@ -89,18 +89,18 @@
   width: 46px;
   height: 46px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--clay-edge);
-  background: var(--clay-wash);
-  color: var(--clay-400);
+  border: 1px solid var(--accent-edge);
+  background: var(--accent-wash);
+  color: var(--accent-text);
   transition: background var(--dur-base) var(--ease-out-quart),
     color var(--dur-base) var(--ease-out-quart),
     transform 460ms var(--ease-spring);
 }
 
 .service__inner:hover .service__icon {
-  background: var(--clay-500);
-  border-color: var(--clay-500);
-  color: #fff;
+  background: var(--accent-solid);
+  border-color: var(--accent-solid);
+  color: var(--accent-on-solid);
   transform: rotate(-6deg) scale(1.05);
 }
 
@@ -109,13 +109,13 @@
   font-size: 1.6rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.07);
+  color: var(--wash-ghost);
   transition: color 460ms var(--ease-out-quart),
     transform 460ms var(--ease-out-expo);
 }
 
 .service__inner:hover .service__index {
-  color: rgba(212, 114, 58, 0.4);
+  color: var(--accent-edge);
   transform: translateY(-3px);
 }
 
@@ -124,14 +124,14 @@
   font-size: var(--size-h4);
   font-weight: 600;
   letter-spacing: -0.015em;
-  color: var(--bone-100);
+  color: var(--fg);
 }
 
 .service__body {
   margin-top: 0.7rem;
   font-size: var(--size-small);
   line-height: 1.8;
-  color: var(--text-on-dark-soft);
+  color: var(--fg-soft);
 }
 
 .service__points {
@@ -149,25 +149,25 @@
   font-size: var(--size-micro);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-on-dark-faint);
+  color: var(--fg-faint);
   transition: color var(--dur-base) var(--ease-out-quart);
 }
 
 .service__inner:hover .service__point {
-  color: var(--text-on-dark-soft);
+  color: var(--fg-soft);
 }
 
 .service__bullet {
   width: 4px;
   height: 4px;
   flex-shrink: 0;
-  background: var(--clay-500);
+  background: var(--accent-solid);
   transform: rotate(45deg);
   transition: transform 460ms var(--ease-spring),
     background var(--dur-base) var(--ease-out-quart);
 }
 
 .service__inner:hover .service__bullet {
-  background: var(--brass-500);
+  background: var(--accent-third-solid);
   transform: rotate(135deg);
 }

@@ -11,15 +11,6 @@
   justify-content: center;
 }
 
-/* A centred eyebrow needs the matching hairline on its right. */
-.heading--center .eyebrow::after {
-  content: "";
-  width: 26px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.55;
-}
-
 .heading--center .heading__rule,
 .heading--center .lede {
   margin-inline: auto;
@@ -40,9 +31,9 @@
 .split__word--accent {
   font-style: italic;
   font-weight: 500;
-  color: var(--clay-400);
+  color: var(--accent-text);
 }
 
 .headline--onlight .split__word--accent {
-  color: var(--clay-500);
+  color: var(--accent-text-onalt);
 }

@@ -1,0 +1,94 @@
+/* ============================================================
+   THEME TOGGLE
+   A short track with a knob that travels, and a pair of icons that
+   slide behind it so only the relevant one is ever under the knob.
+   ============================================================ */
+
+.theme-toggle {
+  --track-w: 56px;
+  --track-h: 28px;
+  --knob: 22px;
+
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+.theme-toggle__well {
+  position: relative;
+  display: block;
+  width: var(--track-w);
+  height: var(--track-h);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--edge);
+  background: var(--wash-faint);
+  overflow: hidden;
+  transition: border-color var(--dur-base) var(--ease-out-quart),
+    background var(--dur-base) var(--ease-out-quart);
+}
+
+.theme-toggle:hover .theme-toggle__well {
+  border-color: var(--accent-edge);
+  background: var(--accent-wash);
+}
+
+.theme-toggle__knob {
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  width: var(--knob);
+  height: var(--knob);
+  margin-top: calc(var(--knob) / -2);
+  border-radius: 50%;
+  background: var(--accent-solid);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+  transition: transform 480ms var(--ease-spring),
+    background var(--dur-base) var(--ease-out-quart);
+}
+
+.theme-toggle.is-light .theme-toggle__knob {
+  transform: translateX(calc(var(--track-w) - var(--knob) - 6px));
+}
+
+/* The icon strip is twice the track wide and slides by half its own width, so
+   whichever icon belongs to the current theme ends up under the knob. */
+.theme-toggle__icons {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 200%;
+  transform: translateX(calc(var(--track-w) * -0.5));
+  transition: transform 480ms var(--ease-out-expo);
+}
+
+.theme-toggle.is-light .theme-toggle__icons {
+  transform: translateX(0);
+}
+
+.theme-toggle__icon {
+  width: 15px;
+  height: 15px;
+  justify-self: center;
+  align-self: center;
+  color: var(--fg-soft);
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+/* Whichever icon currently sits on the knob is drawn on the fill instead. */
+.theme-toggle.is-light .theme-toggle__icon:first-child,
+.theme-toggle:not(.is-light) .theme-toggle__icon:last-child {
+  color: var(--accent-on-solid);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+}
+
+/* Inside the full screen mobile menu the control gets a label beside it. */
+.theme-toggle--menu {
+  gap: var(--space-3);
+}

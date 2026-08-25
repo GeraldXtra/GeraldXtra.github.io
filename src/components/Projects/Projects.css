@@ -32,7 +32,7 @@
   font-weight: 700;
   line-height: 0.9;
   letter-spacing: -0.04em;
-  color: var(--moss-500);
+  color: var(--accent-alt-text-onalt);
 }
 
 .work__count-label {
@@ -40,7 +40,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   line-height: 1.5;
-  color: var(--text-on-light-faint);
+  color: var(--fg-alt-faint);
   padding-top: 0.2rem;
 }
 
@@ -60,9 +60,9 @@
   align-items: center;
   gap: 0.25rem;
   padding: 0.3rem;
-  border: 1px solid var(--edge-light);
+  border: 1px solid var(--edge-alt);
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--wash-alt-soft);
 }
 
 /* The pill slides between tabs rather than blinking on and off. */
@@ -72,7 +72,7 @@
   left: 0;
   bottom: 0.3rem;
   border-radius: var(--radius-pill);
-  background: var(--ink-850);
+  background: var(--fg-alt);
   transition: transform 520ms var(--ease-out-expo),
     width 520ms var(--ease-out-expo), opacity 300ms var(--ease-out-quart);
   will-change: transform, width;
@@ -88,23 +88,23 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: var(--text-on-light-soft);
+  color: var(--fg-alt-soft);
   transition: color 340ms var(--ease-out-quart);
 }
 
 .filters__tab:hover {
-  color: var(--text-on-light);
+  color: var(--fg-alt);
 }
 
 .filters__tab.is-active {
-  color: var(--bone-100);
+  color: var(--surface-alt-raised);
 }
 
 .work__showing {
   font-size: var(--size-micro);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-on-light-faint);
+  color: var(--fg-alt-faint);
 }
 
 /* --- Grid ---------------------------------------------------------- */
@@ -139,9 +139,9 @@
   flex-direction: column;
   width: 100%;
   min-width: 0;
-  border: 1px solid var(--edge-light);
+  border: 1px solid var(--edge-alt);
   border-radius: var(--radius-md);
-  background: #fff;
+  background: var(--surface-alt-raised);
   overflow: hidden;
   transition: transform var(--dur-slow) var(--ease-out-quart),
     box-shadow var(--dur-slow) var(--ease-out-quart),
@@ -150,12 +150,12 @@
 
 .card__inner:hover {
   transform: translateY(-7px);
-  border-color: rgba(28, 23, 20, 0.16);
+  border-color: var(--edge-alt-strong);
   box-shadow: var(--shadow-lift);
 }
 
 .card__inner:focus-within {
-  border-color: var(--clay-edge);
+  border-color: var(--accent-edge);
   box-shadow: var(--shadow-lift);
 }
 
@@ -164,7 +164,7 @@
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--ink-800);
+  background: var(--surface-raised);
 }
 
 .card__media img {
@@ -215,9 +215,13 @@
 
 .card__inner:hover .card__index {
   transform: translateY(-3px);
-  color: var(--bone-50);
+  color: var(--fg-on-media);
 }
 
+/* The next few rules keep literal colours on purpose. Everything from the veil
+   down to the two tag pills sits on top of the project screenshot, which is an
+   image and therefore the same brightness in either theme. Theming them would
+   make them illegible over the photo. */
 .card__tag {
   position: absolute;
   top: 0.9rem;
@@ -256,19 +260,19 @@
   font-size: var(--size-h4);
   font-weight: 600;
   letter-spacing: -0.015em;
-  color: var(--text-on-light);
+  color: var(--fg-alt);
   transition: color var(--dur-base) var(--ease-out-quart);
 }
 
 .card__inner:hover .card__title {
-  color: var(--clay-500);
+  color: var(--accent-text-onalt);
 }
 
 .card__desc {
   margin-top: 0.55rem;
   font-size: var(--size-small);
   line-height: 1.75;
-  color: var(--text-on-light-soft);
+  color: var(--fg-alt-soft);
 }
 
 .card__stack {
@@ -281,17 +285,17 @@
 .card__tech {
   padding: 0.28rem 0.6rem;
   border-radius: var(--radius-xs);
-  background: var(--bone-200);
+  background: var(--surface-alt-sunken);
   font-size: var(--size-micro);
   letter-spacing: 0.06em;
-  color: var(--text-on-light-faint);
+  color: var(--fg-alt-faint);
   transition: background var(--dur-base) var(--ease-out-quart),
     color var(--dur-base) var(--ease-out-quart);
 }
 
 .card__inner:hover .card__tech {
-  background: var(--bone-300);
-  color: var(--text-on-light-soft);
+  background: var(--surface-alt-sunken-strong);
+  color: var(--fg-alt-soft);
 }
 
 /* --- Link -------------------------------------------------------------- */
@@ -305,7 +309,7 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--clay-500);
+  color: var(--accent-text-onalt);
   align-self: flex-start;
   transition: color var(--dur-base) var(--ease-out-quart);
 }
@@ -350,7 +354,7 @@
 }
 
 .card__link--quiet {
-  color: var(--text-on-light-faint);
+  color: var(--fg-alt-faint);
   font-weight: 500;
 }
 
