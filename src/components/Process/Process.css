@@ -1,0 +1,237 @@
+/* ============================================================
+   PROCESS
+   A vertical spine on wide screens, a plain stack on narrow ones.
+   ============================================================ */
+
+.process {
+  position: relative;
+  border-top: 1px solid var(--edge-dark);
+}
+
+.process::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    54% 44% at 82% 84%,
+    rgba(59, 94, 69, 0.1),
+    transparent 64%
+  );
+}
+
+.process__list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+/* --- Spine ------------------------------------------------------ */
+.step__spine {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.step__node {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--edge-dark-strong);
+  background: var(--ink-850);
+  transition: border-color 620ms var(--ease-out-quart) var(--step-delay, 0ms),
+    box-shadow 620ms var(--ease-out-quart) var(--step-delay, 0ms);
+}
+
+.step.is-visible .step__node {
+  border-color: var(--clay-400);
+  box-shadow: 0 0 0 5px rgba(181, 84, 30, 0.12);
+}
+
+.step__node-core {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--stone-500);
+  transform: scale(0.4);
+  transition: transform 620ms var(--ease-spring) var(--step-delay, 0ms),
+    background 620ms var(--ease-out-quart) var(--step-delay, 0ms);
+}
+
+.step.is-visible .step__node-core {
+  transform: none;
+  background: var(--clay-400);
+}
+
+/* The connector between one node and the next. */
+.step__thread {
+  flex: 1;
+  height: 1px;
+  margin-left: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--clay-400),
+    var(--edge-dark) 70%,
+    transparent
+  );
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 900ms var(--ease-out-expo)
+    calc(var(--step-delay, 0ms) + 160ms);
+}
+
+.step.is-visible .step__thread {
+  transform: scaleX(1);
+}
+
+.step:last-child .step__thread {
+  display: none;
+}
+
+/* --- Content ------------------------------------------------------ */
+.step__content {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition: opacity 760ms var(--ease-out-expo) var(--step-delay, 0ms),
+    transform 760ms var(--ease-out-expo) var(--step-delay, 0ms);
+}
+
+.step.is-visible .step__content {
+  opacity: 1;
+  transform: none;
+}
+
+.step__number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: var(--clay-400);
+}
+
+.step__title {
+  margin-top: 0.55rem;
+  font-family: var(--font-display);
+  font-size: var(--size-h4);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--bone-100);
+}
+
+.step__body {
+  margin-top: 0.7rem;
+  font-size: var(--size-small);
+  line-height: 1.85;
+  color: var(--text-on-dark-soft);
+}
+
+.step__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--edge-dark);
+  font-size: var(--size-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+}
+
+.step__meta-mark {
+  width: 4px;
+  height: 4px;
+  flex-shrink: 0;
+  background: var(--brass-500);
+  transform: rotate(45deg);
+}
+
+/* --- Breakpoints ---------------------------------------------------- */
+@media (max-width: 1024px) {
+  .process__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.75rem, 4vw, 2.75rem);
+  }
+
+  /* The thread would point at a node on the next row, so it stands down. */
+  .step:nth-child(2n) .step__thread {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .process__list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  /* On one column the spine turns vertical and runs down the left edge. */
+  .step {
+    flex-direction: row;
+    gap: var(--space-5);
+    padding-bottom: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  .step:last-child {
+    padding-bottom: 0;
+  }
+
+  .step__spine {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    align-self: stretch;
+  }
+
+  .step__thread {
+    display: block;
+    width: 1px;
+    height: auto;
+    flex: 1;
+    margin-left: 0;
+    margin-top: 6px;
+    background: linear-gradient(
+      to bottom,
+      var(--clay-400),
+      var(--edge-dark) 70%,
+      transparent
+    );
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform 900ms var(--ease-out-expo)
+      calc(var(--step-delay, 0ms) + 160ms);
+  }
+
+  .step.is-visible .step__thread {
+    transform: scaleY(1);
+  }
+
+  .step:nth-child(2n) .step__thread {
+    display: block;
+  }
+
+  .step:last-child .step__thread {
+    display: none;
+  }
+
+  .step__content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 1px;
+  }
+}

@@ -1,0 +1,63 @@
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 50%;
+  transition: opacity 260ms var(--ease-out-quart),
+    width 300ms var(--ease-spring), height 300ms var(--ease-spring),
+    background 300ms var(--ease-out-quart),
+    border-color 300ms var(--ease-out-quart);
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--clay-400);
+  will-change: transform;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--clay-edge);
+  will-change: transform;
+}
+
+.cursor-dot.is-awake,
+.cursor-ring.is-awake {
+  opacity: 1;
+}
+
+.cursor-dot.is-hovering {
+  width: 4px;
+  height: 4px;
+  background: var(--bone-100);
+}
+
+.cursor-ring.is-hovering {
+  width: 58px;
+  height: 58px;
+  border-color: var(--clay-400);
+  background: rgba(181, 84, 30, 0.09);
+}
+
+.cursor-ring.is-pressed {
+  width: 26px;
+  height: 26px;
+  background: rgba(181, 84, 30, 0.2);
+}
+
+/* The native pointer only steps aside once the replacement is on screen. */
+.has-custom-cursor body,
+.has-custom-cursor a,
+.has-custom-cursor button,
+.has-custom-cursor input,
+.has-custom-cursor textarea,
+.has-custom-cursor select,
+.has-custom-cursor [data-cursor] {
+  cursor: none;
+}

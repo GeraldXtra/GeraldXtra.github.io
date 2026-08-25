@@ -1,0 +1,120 @@
+/* Not pointer-events: none. A tap while the curtain is up would otherwise pass
+   straight through to whichever hero control happened to be underneath it. */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  display: grid;
+  place-items: center;
+}
+
+/* Once the panels start moving they should not swallow clicks any more. */
+.preloader--leave {
+  pointer-events: none;
+}
+
+/* Two panels meet in the middle, then retreat to the edges they came from. */
+.preloader__panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  background: var(--ink-900);
+  transition: transform var(--dur-curtain) var(--ease-in-out-quart);
+  will-change: transform;
+}
+
+.preloader__panel--top {
+  top: 0;
+}
+
+.preloader__panel--bottom {
+  bottom: 0;
+}
+
+.preloader--leave .preloader__panel--top {
+  transform: translate3d(0, -100%, 0);
+}
+
+.preloader--leave .preloader__panel--bottom {
+  transform: translate3d(0, 100%, 0);
+}
+
+.preloader__stage {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 76vw);
+  text-align: center;
+  transition: opacity 340ms var(--ease-out-quart),
+    transform 480ms var(--ease-out-quart);
+}
+
+.preloader--leave .preloader__stage {
+  opacity: 0;
+  transform: translate3d(0, -18px, 0);
+}
+
+.preloader__mark {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 8vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--bone-100);
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  animation: riseIn 700ms var(--ease-out-expo) 120ms forwards;
+}
+
+.preloader__dot {
+  color: var(--clay-500);
+}
+
+.preloader__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  opacity: 0;
+  animation: fadeIn 600ms var(--ease-out-quart) 380ms forwards;
+}
+
+.preloader__label {
+  font-size: var(--size-micro);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+}
+
+.preloader__count {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  color: var(--clay-400);
+  font-variant-numeric: tabular-nums;
+}
+
+.preloader__track {
+  margin-top: var(--space-3);
+  height: 1px;
+  background: var(--edge-dark);
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 600ms var(--ease-out-quart) 420ms forwards;
+}
+
+.preloader__fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--clay-500), var(--brass-500));
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+@media (max-width: 560px) {
+  .preloader__meta {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+}

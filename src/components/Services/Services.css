@@ -1,0 +1,173 @@
+/* ============================================================
+   SERVICES
+   ============================================================ */
+
+.services {
+  border-top: 1px solid var(--edge-dark);
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+.service {
+  min-width: 0;
+}
+
+.service__inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  border: 1px solid var(--edge-dark);
+  border-radius: var(--radius-md);
+  background: var(--ink-800);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--dur-slow) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart),
+    background var(--dur-base) var(--ease-out-quart),
+    box-shadow var(--dur-slow) var(--ease-out-quart);
+}
+
+.service__inner:hover {
+  transform: translateY(-6px);
+  border-color: var(--clay-edge);
+  background: var(--ink-750);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* A soft light that tracks the pointer across the card face. */
+.service__glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    46% 42% at calc(var(--px, 0.5) * 100%) calc(var(--py, 0.5) * 100%),
+    rgba(181, 84, 30, 0.16),
+    transparent 70%
+  );
+  transition: opacity 460ms var(--ease-out-quart);
+}
+
+.service__inner:hover .service__glow {
+  opacity: 1;
+}
+
+.service__seam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--clay-500), var(--brass-500));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 620ms var(--ease-out-expo);
+}
+
+.service__inner:hover .service__seam {
+  transform: scaleX(1);
+}
+
+.service__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: clamp(1.25rem, 2.4vw, 1.75rem);
+}
+
+.service__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--clay-edge);
+  background: var(--clay-wash);
+  color: var(--clay-400);
+  transition: background var(--dur-base) var(--ease-out-quart),
+    color var(--dur-base) var(--ease-out-quart),
+    transform 460ms var(--ease-spring);
+}
+
+.service__inner:hover .service__icon {
+  background: var(--clay-500);
+  border-color: var(--clay-500);
+  color: #fff;
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.service__index {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.07);
+  transition: color 460ms var(--ease-out-quart),
+    transform 460ms var(--ease-out-expo);
+}
+
+.service__inner:hover .service__index {
+  color: rgba(212, 114, 58, 0.4);
+  transform: translateY(-3px);
+}
+
+.service__title {
+  font-family: var(--font-display);
+  font-size: var(--size-h4);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--bone-100);
+}
+
+.service__body {
+  margin-top: 0.7rem;
+  font-size: var(--size-small);
+  line-height: 1.8;
+  color: var(--text-on-dark-soft);
+}
+
+.service__points {
+  margin-top: auto;
+  padding-top: clamp(1.25rem, 2.2vw, 1.6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.service__point {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: var(--size-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.service__inner:hover .service__point {
+  color: var(--text-on-dark-soft);
+}
+
+.service__bullet {
+  width: 4px;
+  height: 4px;
+  flex-shrink: 0;
+  background: var(--clay-500);
+  transform: rotate(45deg);
+  transition: transform 460ms var(--ease-spring),
+    background var(--dur-base) var(--ease-out-quart);
+}
+
+.service__inner:hover .service__bullet {
+  background: var(--brass-500);
+  transform: rotate(135deg);
+}

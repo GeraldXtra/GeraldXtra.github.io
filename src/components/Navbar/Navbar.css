@@ -1,0 +1,408 @@
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding-inline: var(--gutter);
+  border-bottom: 1px solid transparent;
+  transition: background var(--dur-base) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart),
+    box-shadow var(--dur-base) var(--ease-out-quart),
+    height var(--dur-base) var(--ease-out-quart);
+}
+
+.nav.is-scrolled {
+  height: 66px;
+  background: rgba(16, 14, 12, 0.86);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom-color: var(--edge-dark);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+
+/* --- Wordmark ----------------------------------------------- */
+.nav__mark {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--bone-100);
+  line-height: 1;
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.nav__mark-dot {
+  display: inline-block;
+  color: var(--clay-500);
+  transition: transform var(--dur-base) var(--ease-spring),
+    color var(--dur-base) var(--ease-out-quart);
+}
+
+.nav__mark:hover .nav__mark-dot,
+.nav__mark.is-current .nav__mark-dot {
+  color: var(--clay-400);
+  transform: translateY(-2px) scale(1.25);
+}
+
+/* --- Section links ------------------------------------------ */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.1rem, 2.4vw, 2.2rem);
+}
+
+/* Geometry worth spelling out, because the roll only reads correctly when the
+   three numbers agree. The label occupies 1.35em (its line box). The mask is
+   1.6em, leaving a sliver underneath for the underline, which would otherwise
+   be clipped away by `overflow: hidden`. The twin sits exactly 1.35em lower,
+   so translating the label up by its own height lands the twin at zero. */
+.nav__link {
+  position: relative;
+  display: block;
+  height: 1.6em;
+  line-height: 1.35;
+  overflow: hidden;
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-soft);
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+/* The label rolls upward while its twin arrives from below. */
+.nav__link-text {
+  display: block;
+  position: relative;
+  transition: transform 440ms var(--ease-out-expo);
+}
+
+.nav__link-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+}
+
+.nav__link:hover .nav__link-text,
+.nav__link:focus-visible .nav__link-text {
+  transform: translateY(-100%);
+}
+
+.nav__link:hover,
+.nav__link.is-active {
+  color: var(--bone-100);
+}
+
+.nav__link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--clay-400);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 420ms var(--ease-out-expo);
+}
+
+.nav__link.is-active::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* --- Call to action ----------------------------------------- */
+.nav__end {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.nav__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid var(--clay-edge);
+  border-radius: var(--radius-xs);
+  font-size: var(--size-micro);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay-400);
+  overflow: hidden;
+  isolation: isolate;
+  transition: color var(--dur-base) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart),
+    transform 300ms var(--ease-out-quart);
+}
+
+.nav__cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--clay-500);
+  transform: translate3d(0, 101%, 0);
+  transition: transform 440ms var(--ease-in-out-quart);
+}
+
+.nav__cta:hover {
+  color: #fff;
+  border-color: var(--clay-500);
+}
+
+.nav__cta:hover::after {
+  transform: none;
+}
+
+.nav__cta svg {
+  transition: transform 380ms var(--ease-out-expo);
+}
+
+.nav__cta:hover svg {
+  transform: translate3d(2px, -2px, 0);
+}
+
+/* --- Burger -------------------------------------------------- */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.burger__bar {
+  display: block;
+  height: 1.5px;
+  background: var(--bone-100);
+  border-radius: 2px;
+  transition: transform 420ms var(--ease-out-expo),
+    width 420ms var(--ease-out-expo), background 300ms var(--ease-out-quart);
+}
+
+.burger__bar:nth-child(1) {
+  width: 26px;
+}
+
+.burger__bar:nth-child(2) {
+  width: 17px;
+}
+
+.burger:hover .burger__bar:nth-child(2) {
+  width: 26px;
+}
+
+.burger.is-open .burger__bar {
+  width: 24px;
+}
+
+.burger.is-open .burger__bar:nth-child(1) {
+  transform: translateY(3.75px) rotate(45deg);
+}
+
+.burger.is-open .burger__bar:nth-child(2) {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+/* --- Full screen menu ---------------------------------------- */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: 5.5rem var(--gutter) 2.5rem;
+  background: var(--ink-900);
+  opacity: 0;
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path var(--dur-slow) var(--ease-in-out-quart),
+    opacity 260ms var(--ease-out-quart),
+    visibility 0s linear var(--dur-slow);
+}
+
+.menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path var(--dur-slow) var(--ease-in-out-quart),
+    opacity 200ms var(--ease-out-quart), visibility 0s linear;
+}
+
+/* A warm bloom in the corners so the panel is not a flat black field. */
+.menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      70% 55% at 88% 10%,
+      rgba(181, 84, 30, 0.15),
+      transparent 62%
+    ),
+    radial-gradient(60% 50% at 6% 92%, rgba(59, 94, 69, 0.13), transparent 60%);
+}
+
+.menu__links {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.menu__link {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: clamp(0.5rem, 1.4vw, 0.85rem) 0;
+  border-bottom: 1px solid var(--edge-dark);
+  color: var(--text-on-dark-soft);
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: color var(--dur-base) var(--ease-out-quart),
+    opacity var(--dur-slow) var(--ease-out-expo) var(--menu-delay, 0ms),
+    transform var(--dur-slow) var(--ease-out-expo) var(--menu-delay, 0ms);
+}
+
+.menu.is-open .menu__link {
+  opacity: 1;
+  transform: none;
+}
+
+.menu__index {
+  font-size: var(--size-micro);
+  letter-spacing: 0.2em;
+  color: var(--text-on-dark-faint);
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.menu__label {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 8vw, 3rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  transition: transform 420ms var(--ease-out-expo);
+}
+
+.menu__arrow {
+  margin-left: auto;
+  align-self: center;
+  opacity: 0;
+  transform: translate3d(-10px, 6px, 0);
+  transition: opacity 320ms var(--ease-out-quart),
+    transform 420ms var(--ease-out-expo);
+}
+
+.menu__link:hover,
+.menu__link.is-active {
+  color: var(--bone-100);
+}
+
+.menu__link:hover .menu__label {
+  transform: translateX(10px);
+}
+
+.menu__link:hover .menu__index,
+.menu__link.is-active .menu__index {
+  color: var(--clay-400);
+}
+
+.menu__link:hover .menu__arrow {
+  opacity: 1;
+  transform: none;
+  color: var(--clay-400);
+}
+
+.menu__foot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity var(--dur-slow) var(--ease-out-expo) 520ms,
+    transform var(--dur-slow) var(--ease-out-expo) 520ms;
+}
+
+.menu.is-open .menu__foot {
+  opacity: 1;
+  transform: none;
+}
+
+.menu__foot-note {
+  font-size: var(--size-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+}
+
+.menu__socials {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.menu__social {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--edge-dark);
+  border-radius: var(--radius-xs);
+  color: var(--text-on-dark-soft);
+  transition: color var(--dur-base) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart),
+    transform var(--dur-base) var(--ease-spring);
+}
+
+.menu__social:hover {
+  color: var(--clay-400);
+  border-color: var(--clay-edge);
+  transform: translateY(-3px);
+}
+
+/* --- Breakpoints --------------------------------------------- */
+@media (max-width: 1180px) {
+  .nav__links {
+    gap: 1.1rem;
+  }
+}
+
+@media (max-width: 980px) {
+  .nav__links,
+  .nav__cta {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+@media (min-width: 981px) {
+  .menu {
+    display: none;
+  }
+}

@@ -1,0 +1,25 @@
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: calc(var(--z-nav) + 2);
+  pointer-events: none;
+  background: transparent;
+}
+
+.progress__fill {
+  display: block;
+  height: 100%;
+  transform-origin: left center;
+  /* usePageScroll writes this property onto the document every frame. */
+  transform: scaleX(var(--scroll-progress, 0));
+  background: linear-gradient(
+    90deg,
+    var(--clay-600),
+    var(--clay-400) 45%,
+    var(--brass-500)
+  );
+  will-change: transform;
+}

@@ -1,0 +1,388 @@
+/* ============================================================
+   CONTACT
+   ============================================================ */
+
+.contact {
+  position: relative;
+  border-top: 1px solid var(--edge-dark);
+}
+
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      48% 42% at 8% 12%,
+      rgba(181, 84, 30, 0.11),
+      transparent 62%
+    ),
+    radial-gradient(44% 40% at 92% 88%, rgba(59, 94, 69, 0.09), transparent 60%);
+}
+
+.contact__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.contact__aside {
+  min-width: 0;
+}
+
+/* --- Channels ------------------------------------------------------ */
+.contact__channels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+}
+
+.channel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--edge-dark);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color var(--dur-base) var(--ease-out-quart),
+    transform var(--dur-base) var(--ease-out-quart);
+}
+
+/* A wash that wipes in from the left on hover. */
+.channel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--clay-wash);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 520ms var(--ease-in-out-quart);
+}
+
+.channel:hover {
+  border-color: var(--clay-edge);
+  transform: translateX(4px);
+}
+
+.channel:hover::before {
+  transform: scaleX(1);
+}
+
+.channel__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--edge-dark);
+  border-radius: var(--radius-xs);
+  color: var(--clay-400);
+  transition: background var(--dur-base) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart),
+    color var(--dur-base) var(--ease-out-quart),
+    transform var(--dur-base) var(--ease-spring);
+}
+
+.channel:hover .channel__icon {
+  background: var(--clay-500);
+  border-color: var(--clay-500);
+  color: #fff;
+  transform: rotate(-6deg);
+}
+
+.channel__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.channel__label {
+  font-size: var(--size-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.channel__value {
+  font-size: var(--size-small);
+  color: var(--text-on-dark);
+  overflow-wrap: anywhere;
+}
+
+.channel:hover .channel__label {
+  color: var(--clay-400);
+}
+
+.channel__arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--text-on-dark-faint);
+  opacity: 0;
+  transform: translate3d(-8px, 5px, 0);
+  transition: opacity 320ms var(--ease-out-quart),
+    transform 420ms var(--ease-out-expo),
+    color var(--dur-base) var(--ease-out-quart);
+}
+
+.channel:hover .channel__arrow {
+  opacity: 1;
+  transform: none;
+  color: var(--clay-400);
+}
+
+.contact__note {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: var(--size-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+}
+
+.contact__note-pulse {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--moss-300);
+  box-shadow: 0 0 0 4px rgba(107, 156, 122, 0.13);
+  animation: softPulse 2.6s var(--ease-in-out-quart) infinite;
+}
+
+/* --- Form ------------------------------------------------------------ */
+.contact__panel {
+  min-width: 0;
+}
+
+.form {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--edge-dark);
+  border-radius: var(--radius-md);
+  background: var(--ink-850);
+  box-shadow: var(--shadow-dark);
+}
+
+.form__rows {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  grid-column: 1 / -1;
+}
+
+.field--half {
+  grid-column: span 1;
+}
+
+.field__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.field__label {
+  font-size: var(--size-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.field:focus-within .field__label {
+  color: var(--clay-400);
+}
+
+.field__count {
+  font-size: var(--size-micro);
+  letter-spacing: 0.08em;
+  color: var(--text-on-dark-faint);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.field__count.is-low {
+  color: var(--brass-400);
+}
+
+.field__input {
+  width: 100%;
+  padding: 0.85rem 0.95rem;
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  font-weight: 300;
+  color: var(--bone-100);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--edge-dark);
+  border-radius: var(--radius-xs);
+  outline: none;
+  transition: border-color var(--dur-base) var(--ease-out-quart),
+    background var(--dur-base) var(--ease-out-quart),
+    box-shadow var(--dur-base) var(--ease-out-quart);
+}
+
+.field__input::placeholder {
+  color: rgba(245, 240, 230, 0.24);
+}
+
+.field__input:hover {
+  border-color: var(--edge-dark-strong);
+}
+
+/* Clicking in gets the soft treatment. Arriving by keyboard gets a ring that
+   actually stands out against the dark panel, because that is the only signal
+   a keyboard user has about where they are. */
+.field__input:focus {
+  border-color: var(--clay-400);
+  background: rgba(181, 84, 30, 0.06);
+  box-shadow: 0 0 0 3px rgba(181, 84, 30, 0.22);
+}
+
+.field__input:focus-visible {
+  outline: 2px solid var(--clay-300);
+  outline-offset: 2px;
+  border-color: var(--clay-300);
+  box-shadow: none;
+}
+
+.field__input--area {
+  min-height: 150px;
+  line-height: 1.7;
+  resize: vertical;
+}
+
+.field__input.is-invalid {
+  border-color: rgba(224, 98, 92, 0.55);
+  background: rgba(224, 98, 92, 0.05);
+}
+
+.field__input.is-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(224, 98, 92, 0.12);
+}
+
+.field__error {
+  font-size: var(--size-micro);
+  letter-spacing: 0.04em;
+  color: var(--signal-error);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 320ms var(--ease-out-quart),
+    opacity 260ms var(--ease-out-quart);
+}
+
+.field__error.is-shown {
+  max-height: 2.5rem;
+  opacity: 1;
+}
+
+/* --- Submit ------------------------------------------------------------ */
+.form__foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.form__submit:disabled {
+  opacity: 0.72;
+  cursor: progress;
+  transform: none;
+}
+
+.form__submit:disabled::after {
+  transform: scaleY(0);
+}
+
+.form__spinner {
+  animation: spin 900ms linear infinite;
+}
+
+.form__promise {
+  flex: 1 1 200px;
+  font-size: var(--size-micro);
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  color: var(--text-on-dark-faint);
+}
+
+/* --- Toast --------------------------------------------------------------- */
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: var(--size-small);
+  line-height: 1.5;
+  border-radius: var(--radius-sm);
+  max-height: 0;
+  margin-top: 0;
+  padding: 0 1rem;
+  opacity: 0;
+  border: 1px solid transparent;
+  overflow: hidden;
+  transition: max-height 420ms var(--ease-out-quart),
+    opacity 320ms var(--ease-out-quart), margin-top 420ms var(--ease-out-quart),
+    padding 420ms var(--ease-out-quart);
+}
+
+.toast.is-shown {
+  max-height: 6rem;
+  margin-top: var(--space-4);
+  padding: 0.9rem 1rem;
+  opacity: 1;
+}
+
+.toast__icon {
+  flex-shrink: 0;
+}
+
+.toast--sent {
+  background: var(--moss-wash);
+  border-color: var(--moss-edge);
+  color: var(--signal-ok);
+}
+
+.toast--error {
+  background: rgba(224, 98, 92, 0.09);
+  border-color: rgba(224, 98, 92, 0.28);
+  color: var(--signal-error);
+}
+
+/* --- Breakpoints ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .form__rows {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .field--half {
+    grid-column: 1 / -1;
+  }
+
+  .form__submit {
+    width: 100%;
+  }
+}

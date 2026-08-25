@@ -1,0 +1,161 @@
+/* ============================================================
+   SHARED MOTION
+   Keyframes used by more than one component, plus the scroll
+   reveal primitives that Reveal.jsx and SplitText.jsx drive.
+   ============================================================ */
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes softPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.82);
+  }
+}
+
+@keyframes caretBlink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lineGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes marqueeSlide {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+/* ------------------------------------------------------------
+   REVEAL
+   Elements start displaced and settle once they enter the
+   viewport. The stagger index arrives as a custom property.
+   ------------------------------------------------------------ */
+
+.reveal {
+  --reveal-delay: 0ms;
+  --reveal-shift: 34px;
+  opacity: 0;
+  transition: opacity var(--dur-reveal) var(--ease-out-expo)
+      var(--reveal-delay),
+    transform var(--dur-reveal) var(--ease-out-expo) var(--reveal-delay),
+    filter var(--dur-reveal) var(--ease-out-expo) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+.reveal--up {
+  transform: translate3d(0, var(--reveal-shift), 0);
+}
+.reveal--down {
+  transform: translate3d(0, calc(var(--reveal-shift) * -1), 0);
+}
+.reveal--left {
+  transform: translate3d(calc(var(--reveal-shift) * -1), 0, 0);
+}
+.reveal--right {
+  transform: translate3d(var(--reveal-shift), 0, 0);
+}
+.reveal--scale {
+  transform: scale(0.94);
+}
+.reveal--blur {
+  transform: translate3d(0, var(--reveal-shift), 0);
+  filter: blur(10px);
+}
+.reveal--none {
+  transform: none;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  will-change: auto;
+}
+
+/* ------------------------------------------------------------
+   SPLIT TEXT
+   Each line masks its own words. Words tilt up from below the
+   mask edge, which reads far more crafted than a plain fade.
+   ------------------------------------------------------------ */
+
+.split {
+  display: block;
+}
+
+.split__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.split__word {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0) rotate(3deg);
+  opacity: 0;
+  transition: transform var(--dur-reveal) var(--ease-out-expo),
+    opacity calc(var(--dur-reveal) * 0.7) linear;
+  transition-delay: var(--word-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.split.is-visible .split__word {
+  transform: none;
+  opacity: 1;
+  will-change: auto;
+}

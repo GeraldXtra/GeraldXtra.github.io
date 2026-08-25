@@ -1,0 +1,387 @@
+/* ============================================================
+   SELECTED WORK
+   ============================================================ */
+
+.work {
+  position: relative;
+}
+
+.work__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.work__heading {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.work__count {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  padding-top: 0.35rem;
+}
+
+.work__count-value {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 2rem + 2.4vw, 4rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--moss-500);
+}
+
+.work__count-label {
+  font-size: var(--size-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--text-on-light-faint);
+  padding-top: 0.2rem;
+}
+
+/* --- Filters ------------------------------------------------------ */
+.work__filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+}
+
+.filters {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border: 1px solid var(--edge-light);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* The pill slides between tabs rather than blinking on and off. */
+.filters__marker {
+  position: absolute;
+  top: 0.3rem;
+  left: 0;
+  bottom: 0.3rem;
+  border-radius: var(--radius-pill);
+  background: var(--ink-850);
+  transition: transform 520ms var(--ease-out-expo),
+    width 520ms var(--ease-out-expo), opacity 300ms var(--ease-out-quart);
+  will-change: transform, width;
+}
+
+.filters__tab {
+  position: relative;
+  z-index: 1;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-on-light-soft);
+  transition: color 340ms var(--ease-out-quart);
+}
+
+.filters__tab:hover {
+  color: var(--text-on-light);
+}
+
+.filters__tab.is-active {
+  color: var(--bone-100);
+}
+
+.work__showing {
+  font-size: var(--size-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-on-light-faint);
+}
+
+/* --- Grid ---------------------------------------------------------- */
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(312px, 1fr));
+  gap: clamp(1.1rem, 2vw, 1.75rem);
+  transition: opacity 240ms var(--ease-out-quart),
+    transform 240ms var(--ease-out-quart);
+}
+
+.work__grid.is-leaving {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+}
+
+/* --- Card -----------------------------------------------------------
+   Two layers on purpose. The outer one runs the arrival animation, the
+   inner one carries the hover lift. Keeping them apart means a finished
+   `animation` can never win over the hover `transform`.
+   -------------------------------------------------------------------- */
+.card {
+  display: flex;
+  min-width: 0;
+  opacity: 0;
+  animation: riseIn 720ms var(--ease-out-expo) var(--card-delay, 0ms) forwards;
+}
+
+.card__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--edge-light);
+  border-radius: var(--radius-md);
+  background: #fff;
+  overflow: hidden;
+  transition: transform var(--dur-slow) var(--ease-out-quart),
+    box-shadow var(--dur-slow) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart);
+}
+
+.card__inner:hover {
+  transform: translateY(-7px);
+  border-color: rgba(28, 23, 20, 0.16);
+  box-shadow: var(--shadow-lift);
+}
+
+.card__inner:focus-within {
+  border-color: var(--clay-edge);
+  box-shadow: var(--shadow-lift);
+}
+
+/* --- Media ---------------------------------------------------------- */
+.card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--ink-800);
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.01);
+  transition: transform 1000ms var(--ease-out-expo),
+    filter var(--dur-slow) var(--ease-out-quart);
+  filter: saturate(0.94);
+}
+
+.card__inner:hover .card__media img {
+  transform: scale(1.07);
+  filter: saturate(1.04);
+}
+
+.card__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 10, 8, 0.5),
+    rgba(11, 10, 8, 0.06) 46%,
+    transparent
+  );
+  opacity: 0.85;
+  transition: opacity var(--dur-slow) var(--ease-out-quart);
+}
+
+.card__inner:hover .card__veil {
+  opacity: 0.55;
+}
+
+.card__index {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgba(245, 240, 230, 0.8);
+  transition: transform 520ms var(--ease-out-expo),
+    color var(--dur-base) var(--ease-out-quart);
+}
+
+.card__inner:hover .card__index {
+  transform: translateY(-3px);
+  color: var(--bone-50);
+}
+
+.card__tag {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  padding: 0.32rem 0.75rem;
+  border-radius: var(--radius-xs);
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
+.card__tag--web {
+  background: rgba(181, 84, 30, 0.24);
+  border: 1px solid rgba(212, 114, 58, 0.42);
+  color: #f2c6a8;
+}
+
+.card__tag--uiux {
+  background: rgba(59, 94, 69, 0.28);
+  border: 1px solid rgba(107, 156, 122, 0.42);
+  color: #b6dcc0;
+}
+
+/* --- Body ------------------------------------------------------------ */
+.card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(1.25rem, 2vw, 1.6rem);
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: var(--size-h4);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-on-light);
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.card__inner:hover .card__title {
+  color: var(--clay-500);
+}
+
+.card__desc {
+  margin-top: 0.55rem;
+  font-size: var(--size-small);
+  line-height: 1.75;
+  color: var(--text-on-light-soft);
+}
+
+.card__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.card__tech {
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--radius-xs);
+  background: var(--bone-200);
+  font-size: var(--size-micro);
+  letter-spacing: 0.06em;
+  color: var(--text-on-light-faint);
+  transition: background var(--dur-base) var(--ease-out-quart),
+    color var(--dur-base) var(--ease-out-quart);
+}
+
+.card__inner:hover .card__tech {
+  background: var(--bone-300);
+  color: var(--text-on-light-soft);
+}
+
+/* --- Link -------------------------------------------------------------- */
+.card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: auto;
+  padding-top: 1.15rem;
+  font-size: var(--size-micro);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay-500);
+  align-self: flex-start;
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+/* One focusable target covering the card keeps the tab order sensible. */
+.card__inner--linked .card__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.card__link-text {
+  position: relative;
+}
+
+.card__link-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 460ms var(--ease-out-expo);
+}
+
+.card__inner:hover .card__link-text::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.card__link-icon {
+  display: inline-flex;
+  transition: transform 460ms var(--ease-out-expo);
+}
+
+.card__inner:hover .card__link-icon {
+  transform: translate3d(3px, -3px, 0);
+}
+
+.card__link--quiet {
+  color: var(--text-on-light-faint);
+  font-weight: 500;
+}
+
+.card__link--quiet .card__link-text::after,
+.card__inner:hover .card__link--quiet .card__link-icon {
+  display: none;
+}
+
+/* --- Breakpoints --------------------------------------------------------- */
+@media (max-width: 900px) {
+  .work__top {
+    flex-direction: column;
+  }
+
+  .work__count {
+    order: -1;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .work__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .filters {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .filters__tab {
+    padding-inline: 0.85rem;
+  }
+}

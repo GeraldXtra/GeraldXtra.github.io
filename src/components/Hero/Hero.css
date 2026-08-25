@@ -1,0 +1,482 @@
+/* ============================================================
+   HERO
+   Everything inside waits for the section to gain `is-ready`,
+   which the preloader hands over the moment its count finishes.
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: clamp(7rem, 12vh, 9.5rem) var(--gutter) clamp(5rem, 10vh, 7rem);
+  background: var(--ink-850);
+  overflow: clip;
+}
+
+/* --- Background field ---------------------------------------- */
+.hero__field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero__rule {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 1400ms var(--ease-out-expo);
+}
+
+.hero.is-ready .hero__rule {
+  transform: scaleY(1);
+}
+
+.hero__rule--a {
+  left: 18%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--edge-dark) 22%,
+    var(--edge-dark) 78%,
+    transparent
+  );
+  transition-delay: 220ms;
+}
+
+.hero__rule--b {
+  right: 26%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(181, 84, 30, 0.22) 34%,
+    transparent 82%
+  );
+  transition-delay: 340ms;
+}
+
+.hero__rule--c {
+  right: 7%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--edge-dark) 16%,
+    var(--edge-dark) 84%,
+    transparent
+  );
+  transition-delay: 460ms;
+}
+
+.hero__glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(
+      52% 46% at 74% 26%,
+      rgba(181, 84, 30, 0.16),
+      transparent 66%
+    ),
+    radial-gradient(46% 44% at 12% 82%, rgba(59, 94, 69, 0.12), transparent 64%);
+  transition: opacity 1600ms var(--ease-out-quart) 200ms;
+}
+
+.hero.is-ready .hero__glow {
+  opacity: 1;
+}
+
+/* --- Layout --------------------------------------------------- */
+.hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+}
+
+/* Grid children need this or a long unbroken string can widen the column. */
+.hero__copy {
+  min-width: 0;
+}
+
+/* Shared entrance for every direct piece of the hero. */
+.hero__status,
+.hero__typed,
+.hero__intro,
+.hero__actions,
+.hero__scroll,
+.hero__portrait {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 900ms var(--ease-out-expo) var(--in, 0ms),
+    transform 900ms var(--ease-out-expo) var(--in, 0ms);
+}
+
+.hero.is-ready .hero__status,
+.hero.is-ready .hero__typed,
+.hero.is-ready .hero__intro,
+.hero.is-ready .hero__actions,
+.hero.is-ready .hero__scroll,
+.hero.is-ready .hero__portrait {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Status pill ---------------------------------------------- */
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 1rem 0.5rem 0.8rem;
+  border: 1px solid var(--clay-edge);
+  border-radius: var(--radius-pill);
+  background: var(--clay-wash);
+  font-size: var(--size-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clay-300);
+}
+
+.hero__status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--clay-400);
+  box-shadow: 0 0 0 4px rgba(181, 84, 30, 0.15);
+  animation: softPulse 2.4s var(--ease-in-out-quart) infinite;
+}
+
+/* --- Headline -------------------------------------------------- */
+.hero__title {
+  margin-top: clamp(1.4rem, 3vw, 2.1rem);
+  font-family: var(--font-display);
+  font-size: var(--size-display);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--bone-100);
+}
+
+/* Each line is a mask. The text inside climbs out from under it. */
+.hero__title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.hero__title-inner {
+  display: block;
+  transform: translate3d(0, 108%, 0);
+  transition: transform 1100ms var(--ease-out-expo) var(--in, 0ms);
+  will-change: transform;
+}
+
+.hero.is-ready .hero__title-inner {
+  transform: none;
+  will-change: auto;
+}
+
+.hero__title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--clay-400);
+}
+
+.hero__amp {
+  color: var(--stone-500);
+  font-weight: 400;
+}
+
+/* --- Typed line ------------------------------------------------ */
+.hero__typed {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: clamp(1rem, 2.2vw, 1.5rem);
+  min-height: 2.2em;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 0.9rem + 1.1vw, 1.75rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--stone-500);
+}
+
+.hero__typed-value {
+  color: var(--brass-400);
+  font-style: normal;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.92em;
+  letter-spacing: 0.005em;
+}
+
+.hero__caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 1.05em;
+  background: var(--clay-400);
+  transform: translateY(0.12em);
+  animation: caretBlink 1.05s steps(1) infinite;
+}
+
+/* --- Intro copy ------------------------------------------------ */
+.hero__intro {
+  max-width: 52ch;
+  margin-top: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-size: var(--size-lead);
+  line-height: 1.85;
+  color: var(--text-on-dark-soft);
+}
+
+/* --- Actions --------------------------------------------------- */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+}
+
+.hero__actions svg {
+  transition: transform 380ms var(--ease-out-expo);
+}
+
+.hero__actions .btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* --- Scroll hint ----------------------------------------------- */
+.hero__scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: var(--size-micro);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.hero__scroll:hover {
+  color: var(--clay-400);
+}
+
+.hero__scroll-track {
+  position: relative;
+  display: block;
+  width: 52px;
+  height: 1px;
+  background: var(--edge-dark-strong);
+  overflow: hidden;
+}
+
+.hero__scroll-bead {
+  position: absolute;
+  inset: 0;
+  background: var(--clay-400);
+  transform: translateX(-100%);
+  animation: scrollBead 2.4s var(--ease-in-out-quart) infinite;
+}
+
+@keyframes scrollBead {
+  0% {
+    transform: translateX(-100%);
+  }
+  55%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* --- Portrait -------------------------------------------------- */
+.hero__portrait {
+  position: relative;
+  justify-self: end;
+  perspective: 1000px;
+}
+
+.hero__frame {
+  position: relative;
+  width: clamp(240px, 26vw, 350px);
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--edge-dark-strong);
+  overflow: hidden;
+  background: var(--ink-800);
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform-style: preserve-3d;
+  transition: transform 500ms var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart),
+    box-shadow var(--dur-slow) var(--ease-out-quart);
+  box-shadow: var(--shadow-dark);
+}
+
+.hero__frame:hover {
+  border-color: var(--clay-edge);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(181, 84, 30, 0.14);
+}
+
+.hero__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: saturate(0.92) contrast(1.03);
+  transition: transform 900ms var(--ease-out-expo),
+    filter var(--dur-slow) var(--ease-out-quart);
+}
+
+.hero__frame:hover img {
+  transform: scale(1.045);
+  filter: saturate(1) contrast(1.05);
+}
+
+/* A light that follows the pointer across the glass. */
+.hero__frame-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    38% 34% at calc(var(--px, 0.5) * 100%) calc(var(--py, 0.5) * 100%),
+    rgba(255, 255, 255, 0.16),
+    transparent 68%
+  );
+  transition: opacity 420ms var(--ease-out-quart);
+}
+
+.hero__frame:hover .hero__frame-sheen {
+  opacity: 1;
+}
+
+.hero__frame-corner {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 26px;
+  height: 26px;
+  border-top: 1px solid var(--clay-400);
+  border-left: 1px solid var(--clay-400);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.hero__chip {
+  position: absolute;
+  left: -14px;
+  bottom: -16px;
+  padding: 0.6rem 1.1rem;
+  background: var(--clay-500);
+  color: #fff;
+  font-size: var(--size-micro);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: var(--radius-xs);
+  box-shadow: 0 14px 34px rgba(181, 84, 30, 0.3);
+  white-space: nowrap;
+  animation: floatSlow 5.5s var(--ease-in-out-quart) infinite;
+}
+
+.hero__thread {
+  position: absolute;
+  top: 24px;
+  right: -22px;
+  width: 1px;
+  height: 96px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--clay-400),
+    transparent
+  );
+}
+
+.hero__stamp {
+  position: absolute;
+  right: -8px;
+  top: -46px;
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.035);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* --- Corner note ----------------------------------------------- */
+.hero__timeline {
+  position: absolute;
+  right: var(--gutter);
+  bottom: clamp(1.5rem, 4vh, 2.5rem);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: var(--text-on-dark-faint);
+  opacity: 0;
+  transition: opacity 900ms var(--ease-out-quart) 1000ms;
+}
+
+.hero.is-ready .hero__timeline {
+  opacity: 1;
+}
+
+/* --- Breakpoints ------------------------------------------------ */
+@media (max-width: 1080px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(3rem, 8vw, 4.5rem);
+  }
+
+  .hero__portrait {
+    justify-self: start;
+  }
+
+  .hero__frame {
+    width: min(320px, 74vw);
+  }
+
+  .hero__stamp {
+    display: none;
+  }
+
+  .hero__timeline {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    min-height: auto;
+    padding-top: 7.5rem;
+  }
+
+  .hero__portrait {
+    justify-self: center;
+  }
+
+  .hero__frame {
+    width: min(280px, 78vw);
+  }
+
+  .hero__thread {
+    display: none;
+  }
+
+  .hero__chip {
+    left: 50%;
+    /* The float would fight a centring transform, so it stands still here. */
+    animation: none;
+    transform: translateX(-50%);
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+}

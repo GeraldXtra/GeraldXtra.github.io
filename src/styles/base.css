@@ -1,0 +1,347 @@
+/* ============================================================
+   BASE
+   Page ground, section shells and the primitives that repeat
+   across more than one section.
+   ============================================================ */
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--size-body);
+  letter-spacing: 0.01em;
+  background: var(--ink-850);
+  color: var(--text-on-dark);
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+/* Focusing a landmark should not draw a box around the whole page. Keyboard
+   users still get the ring on the controls inside it. */
+#main:focus {
+  outline: none;
+}
+
+/* --- Scrollbar ---------------------------------------------- */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-600);
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--ink-900);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clay-500);
+}
+
+html {
+  scrollbar-color: var(--ink-600) var(--ink-900);
+  scrollbar-width: thin;
+}
+
+/* --- Film grain --------------------------------------------
+   A faint animated tooth over the entire page. It stops the flat
+   colour fields from reading like a template.
+   ----------------------------------------------------------- */
+/* The overhang only has to cover the drift, which never exceeds 4% in either
+   direction. An earlier inset of -150% made this element sixteen viewport
+   areas of blended, permanently composited texture for no visible gain. */
+.grain {
+  position: fixed;
+  inset: -12%;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
+  animation: grainDrift 7s steps(6) infinite;
+}
+
+/* Phones gain the least from the texture and pay the most for it. */
+@media (max-width: 700px) {
+  .grain {
+    display: none;
+  }
+}
+
+@keyframes grainDrift {
+  0% {
+    transform: translate(0, 0);
+  }
+  16% {
+    transform: translate(-2%, -3%);
+  }
+  33% {
+    transform: translate(-4%, 2%);
+  }
+  50% {
+    transform: translate(2%, -4%);
+  }
+  66% {
+    transform: translate(-3%, 3%);
+  }
+  83% {
+    transform: translate(3%, 1%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    animation: none;
+  }
+}
+
+/* --- Section shell ------------------------------------------ */
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+  padding-inline: var(--gutter);
+  overflow: clip;
+}
+
+.section--dark {
+  background: var(--ink-850);
+  color: var(--text-on-dark);
+}
+
+.section--deep {
+  background: var(--ink-900);
+  color: var(--text-on-dark);
+}
+
+.section--light {
+  background: var(--bone-100);
+  color: var(--text-on-light);
+}
+
+.section--parchment {
+  background: var(--bone-200);
+  color: var(--text-on-light);
+}
+
+.shell {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+}
+
+/* --- Section heading block ---------------------------------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.eyebrow--clay {
+  color: var(--clay-400);
+}
+.eyebrow--moss {
+  color: var(--moss-500);
+}
+.eyebrow--brass {
+  color: var(--brass-500);
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--size-h2);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  margin-top: var(--space-5);
+}
+
+/* SplitText emits `.split__word--accent` spans rather than `<em>`, so the
+   accent colour is set alongside those in SectionHeading.css. */
+
+.rule {
+  width: 54px;
+  height: 2px;
+  margin-top: var(--space-5);
+  background: var(--clay-500);
+  transform-origin: left center;
+}
+
+.rule--clay {
+  background: var(--clay-500);
+}
+
+.rule--moss {
+  background: var(--moss-500);
+}
+
+.rule--brass {
+  background: var(--brass-500);
+}
+
+.lede {
+  max-width: 54ch;
+  margin-top: var(--space-5);
+  font-size: var(--size-lead);
+  line-height: 1.8;
+  color: var(--text-on-dark-soft);
+}
+
+.lede--onlight {
+  color: var(--text-on-light-soft);
+}
+
+/* --- Buttons ------------------------------------------------ */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: 1rem 2.1rem;
+  border-radius: var(--radius-xs);
+  font-size: var(--size-micro);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color var(--dur-base) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart),
+    transform var(--dur-base) var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-out-quart);
+}
+
+.btn__label {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* A wash that wipes upward from the bottom edge on hover. */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform var(--dur-base) var(--ease-in-out-quart);
+}
+
+.btn:hover::after,
+.btn:focus-visible::after {
+  transform: scaleY(1);
+  transform-origin: top center;
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn--solid {
+  background: var(--clay-500);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(181, 84, 30, 0.24);
+}
+.btn--solid::after {
+  background: var(--clay-600);
+}
+.btn--solid:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px rgba(181, 84, 30, 0.34);
+}
+
+.btn--outline {
+  border: 1px solid var(--edge-dark-strong);
+  color: var(--text-on-dark);
+}
+.btn--outline::after {
+  background: var(--bone-100);
+}
+.btn--outline:hover {
+  color: var(--ink-900);
+  border-color: var(--bone-100);
+  transform: translateY(-3px);
+}
+
+/* --- Small shared pieces ------------------------------------ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--size-small);
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--edge-dark);
+  color: var(--text-on-dark-soft);
+  transition: color var(--dur-base) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart),
+    background var(--dur-base) var(--ease-out-quart),
+    transform var(--dur-base) var(--ease-spring);
+}
+
+.chip:hover {
+  color: var(--clay-300);
+  border-color: var(--clay-edge);
+  background: var(--clay-wash);
+  transform: translateY(-2px);
+}
+
+.hairline {
+  height: 1px;
+  border: 0;
+  background: var(--edge-dark);
+}
+
+/* --- Screen reader only ------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: calc(var(--z-nav) + 1);
+  padding: 0.7rem 1.2rem;
+  background: var(--clay-500);
+  color: #fff;
+  font-size: var(--size-small);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius-xs);
+  transform: translateY(-160%);
+  transition: transform var(--dur-base) var(--ease-out-expo);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}

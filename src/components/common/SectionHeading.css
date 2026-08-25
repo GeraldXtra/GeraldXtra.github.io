@@ -1,0 +1,48 @@
+.heading {
+  position: relative;
+  margin-bottom: clamp(2.75rem, 5vw, 4.5rem);
+}
+
+.heading--center {
+  text-align: center;
+}
+
+.heading--center .eyebrow {
+  justify-content: center;
+}
+
+/* A centred eyebrow needs the matching hairline on its right. */
+.heading--center .eyebrow::after {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.heading--center .heading__rule,
+.heading--center .lede {
+  margin-inline: auto;
+}
+
+/* The rule draws itself out from its left edge as the block arrives. */
+.heading__rule {
+  display: block;
+  transform: scaleX(0);
+  transition: transform var(--dur-slow) var(--ease-out-expo)
+    var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible > .heading__rule {
+  transform: scaleX(1);
+}
+
+.split__word--accent {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--clay-400);
+}
+
+.headline--onlight .split__word--accent {
+  color: var(--clay-500);
+}

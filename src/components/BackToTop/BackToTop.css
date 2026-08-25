@@ -1,0 +1,81 @@
+.to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2.25rem);
+  bottom: clamp(1rem, 3vw, 2.25rem);
+  z-index: var(--z-backtop);
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: var(--bone-100);
+  background: rgba(20, 18, 16, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--edge-dark);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 14px, 0) scale(0.9);
+  transition: opacity var(--dur-base) var(--ease-out-quart),
+    visibility var(--dur-base) var(--ease-out-quart),
+    transform var(--dur-base) var(--ease-spring),
+    background var(--dur-base) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart);
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.to-top:hover {
+  background: var(--clay-500);
+  border-color: var(--clay-500);
+  transform: translate3d(0, -3px, 0);
+}
+
+.to-top__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.to-top__ring-track,
+.to-top__ring-fill {
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.to-top__ring-track {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+/* Circumference of an r=21 circle, to four places. The dash offset walks it
+   back as `--scroll-progress` climbs, so the ring traces the page without any
+   JavaScript touching this element. */
+.to-top__ring-fill {
+  --ring-length: 131.9469;
+  stroke: var(--clay-400);
+  stroke-linecap: round;
+  stroke-dasharray: var(--ring-length);
+  stroke-dashoffset: calc(
+    var(--ring-length) * (1 - var(--scroll-progress, 0))
+  );
+  transition: stroke 300ms var(--ease-out-quart);
+}
+
+.to-top:hover .to-top__ring-fill {
+  stroke: var(--bone-100);
+}
+
+.to-top__icon {
+  position: relative;
+  z-index: 1;
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.to-top:hover .to-top__icon {
+  transform: translateY(-2px);
+}

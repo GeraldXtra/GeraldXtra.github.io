@@ -1,0 +1,210 @@
+/* ============================================================
+   SKILLS
+   ============================================================ */
+
+.skills {
+  position: relative;
+  border-top: 1px solid var(--edge-dark);
+}
+
+.skills::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    50% 46% at 14% 18%,
+    rgba(196, 154, 60, 0.07),
+    transparent 64%
+  );
+}
+
+.skills__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2.25rem, 5vw, 4.5rem);
+}
+
+.skills__column {
+  min-width: 0;
+}
+
+.skills__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  padding-bottom: 0.9rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.1rem);
+  border-bottom: 1px solid var(--edge-dark);
+  width: 100%;
+}
+
+.skills__label::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+}
+
+.skills__label--clay {
+  color: var(--clay-400);
+}
+
+.skills__label--clay::before {
+  background: var(--clay-500);
+}
+
+.skills__label--moss {
+  color: var(--moss-300);
+}
+
+.skills__label--moss::before {
+  background: var(--moss-400);
+}
+
+/* --- Meters ----------------------------------------------------- */
+.skills__meters {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+.meter__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: 0.6rem;
+}
+
+.meter__name {
+  font-size: var(--size-body);
+  font-weight: 400;
+  color: var(--text-on-dark);
+}
+
+.meter__value {
+  font-family: var(--font-display);
+  font-size: var(--size-small);
+  letter-spacing: 0.04em;
+  color: var(--text-on-dark-faint);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur-base) var(--ease-out-quart);
+}
+
+.meter:hover .meter__value {
+  color: var(--bone-100);
+}
+
+.meter__track {
+  position: relative;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.meter__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  border-radius: var(--radius-pill);
+  transition: width 1500ms var(--ease-out-expo);
+}
+
+.meter__fill--clay {
+  background: linear-gradient(90deg, var(--clay-600), var(--clay-400));
+}
+
+.meter__fill--moss {
+  background: linear-gradient(90deg, var(--moss-600), var(--moss-400));
+}
+
+/* A highlight that runs along the filled part every few seconds. */
+.meter__fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: meterSheen 3.6s var(--ease-in-out-quart) 1.6s infinite;
+}
+
+@keyframes meterSheen {
+  0% {
+    transform: translateX(-100%);
+  }
+  45%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meter__fill::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* --- Chips ------------------------------------------------------- */
+.skills__subhead {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: 1rem;
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+}
+
+.skills__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+/* Two specificity notes, both deliberate.
+
+   The parent selector outranks the plain `.chip` rule in base.css, so this
+   transition list wins outright instead of depending on which stylesheet the
+   bundler happened to place last.
+
+   The hover rule has to outrank `.reveal.is-visible .skills__chip` as well,
+   which is why it carries the same ancestors plus the pseudo class. Written as
+   a bare `.skills__chip:hover` the lift would never appear. */
+.skills__chips .skills__chip {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition: opacity 620ms var(--ease-out-expo) var(--chip-delay, 0ms),
+    transform 620ms var(--ease-out-expo) var(--chip-delay, 0ms),
+    color var(--dur-base) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart),
+    background var(--dur-base) var(--ease-out-quart);
+}
+
+.reveal.is-visible .skills__chips .skills__chip {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.is-visible .skills__chips .skills__chip:hover {
+  transform: translateY(-2px);
+}
+
+/* --- Breakpoints -------------------------------------------------- */
+@media (max-width: 860px) {
+  .skills__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
