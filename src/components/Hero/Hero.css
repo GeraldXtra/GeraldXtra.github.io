@@ -106,7 +106,6 @@
 .hero__typed,
 .hero__intro,
 .hero__actions,
-.hero__scroll,
 .hero__portrait {
   opacity: 0;
   transform: translate3d(0, 26px, 0);
@@ -118,7 +117,6 @@
 .hero.is-ready .hero__typed,
 .hero.is-ready .hero__intro,
 .hero.is-ready .hero__actions,
-.hero.is-ready .hero__scroll,
 .hero.is-ready .hero__portrait {
   opacity: 1;
   transform: none;
@@ -246,50 +244,6 @@
 
 .hero__actions .btn:hover svg {
   transform: translateX(4px);
-}
-
-/* --- Scroll hint ----------------------------------------------- */
-.hero__scroll {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
-  font-size: var(--size-micro);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--text-on-dark-faint);
-  transition: color var(--dur-base) var(--ease-out-quart);
-}
-
-.hero__scroll:hover {
-  color: var(--clay-400);
-}
-
-.hero__scroll-track {
-  position: relative;
-  display: block;
-  width: 52px;
-  height: 1px;
-  background: var(--edge-dark-strong);
-  overflow: hidden;
-}
-
-.hero__scroll-bead {
-  position: absolute;
-  inset: 0;
-  background: var(--clay-400);
-  transform: translateX(-100%);
-  animation: scrollBead 2.4s var(--ease-in-out-quart) infinite;
-}
-
-@keyframes scrollBead {
-  0% {
-    transform: translateX(-100%);
-  }
-  55%,
-  100% {
-    transform: translateX(100%);
-  }
 }
 
 /* --- Portrait -------------------------------------------------- */
@@ -474,9 +428,5 @@
     /* The float would fight a centring transform, so it stands still here. */
     animation: none;
     transform: translateX(-50%);
-  }
-
-  .hero__scroll {
-    display: none;
   }
 }
