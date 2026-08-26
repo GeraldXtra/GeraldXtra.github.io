@@ -42,7 +42,7 @@ export const profile = {
      `resumeName` is what the browser saves the file as, so give it your
      own name rather than "resume.pdf" sitting in someone's downloads.
      ------------------------------------------------------------------ */
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/resume.pdf" || "Eberechukwu-Gerald-Resume.pdf",
   resumeName: "Eberechukwu-Gerald-Resume.pdf",
 };
 
