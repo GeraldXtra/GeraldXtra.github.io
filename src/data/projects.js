@@ -40,22 +40,22 @@ export const projects = [
     stack: ["HTML", "CSS", "Clip Path", "Responsive"],
     url: null,
   },
-  {
-    id: "resume",
-    index: "03",
-    type: "web",
-    tagLabel: "Web Dev",
-    title: "Resume Template",
-    image: resume,
-    alt: "A two column resume laid out as a web page",
-    description:
-      "A resume built as a real web page that still prints cleanly onto one sheet. Two columns, skill meters down the side, and a type system built around Cormorant Garamond.",
-    stack: ["HTML", "CSS", "Print Design", "Typography"],
-    url: "https://gerald-resume.netlify.app",
-  },
+  // {
+  //   id: "resume",
+  //   index: "03",
+  //   type: "web",
+  //   tagLabel: "Web Dev",
+  //   title: "Resume Template",
+  //   image: resume,
+  //   alt: "A two column resume laid out as a web page",
+  //   description:
+  //     "A resume built as a real web page that still prints cleanly onto one sheet. Two columns, skill meters down the side, and a type system built around Cormorant Garamond.",
+  //   stack: ["HTML", "CSS", "Print Design", "Typography"],
+  //   url: "https://gerald-resume.netlify.app",
+  // },
   {
     id: "digitaz",
-    index: "04",
+    index: "03",
     type: "web",
     tagLabel: "Web Dev",
     title: "Digitaz Storefront",
@@ -68,7 +68,7 @@ export const projects = [
   },
   {
     id: "etrade",
-    index: "05",
+    index: "04",
     type: "web",
     tagLabel: "Web Dev",
     title: "eTrade Storefront",
@@ -81,7 +81,7 @@ export const projects = [
   },
   {
     id: "gearzone",
-    index: "06",
+    index: "05",
     type: "uiux",
     tagLabel: "UI/UX",
     title: "Gearzone Commerce Design",
@@ -94,7 +94,7 @@ export const projects = [
   },
   {
     id: "crunchyroll",
-    index: "07",
+    index: "06",
     type: "uiux",
     tagLabel: "UI/UX",
     title: "Crunchyroll Prototype",
@@ -107,7 +107,7 @@ export const projects = [
   },
   {
     id: "ledgerwatch",
-    index: "08",
+    index: "07",
     type: "web",
     tagLabel: "Web Dev",
     title: "LedgerWatch",
