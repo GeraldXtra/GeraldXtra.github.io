@@ -1,11 +1,11 @@
 import safenote from "../assets/images/safenote.png";
 import glovo from "../assets/images/glovo.png";
-import resume from "../assets/images/resume.png";
 import digitaz from "../assets/images/digitaz.png";
 import etrade from "../assets/images/etrade.png";
 import gearzone from "../assets/images/gearzone.png";
 import crunchyroll from "../assets/images/crunchyroll.png";
 import ledgerwatch from "../assets/images/ledgerwatch.png";
+import tessa from "../assets/images/tessa.png";
 
 export const projectFilters = [
   { id: "all", label: "Everything" },
@@ -40,25 +40,13 @@ export const projects = [
     stack: ["HTML", "CSS", "Clip Path", "Responsive"],
     url: null,
   },
-  // {
-  //   id: "resume",
-  //   index: "03",
-  //   type: "web",
-  //   tagLabel: "Web Dev",
-  //   title: "Resume Template",
-  //   image: resume,
-  //   alt: "A two column resume laid out as a web page",
-  //   description:
-  //     "A resume built as a real web page that still prints cleanly onto one sheet. Two columns, skill meters down the side, and a type system built around Cormorant Garamond.",
-  //   stack: ["HTML", "CSS", "Print Design", "Typography"],
-  //   url: "https://gerald-resume.netlify.app",
-  // },
+
   {
     id: "digitaz",
     index: "03",
     type: "web",
     tagLabel: "Web Dev",
-    title: "Digitaz Storefront",
+    title: "Digitaz Store Frontend",
     image: digitaz,
     alt: "The Digitaz gaming storefront homepage",
     description:
@@ -71,7 +59,7 @@ export const projects = [
     index: "04",
     type: "web",
     tagLabel: "Web Dev",
-    title: "eTrade Storefront",
+    title: "eTrade Store Frontend",
     image: etrade,
     alt: "The eTrade gadget shop homepage",
     description:
@@ -117,6 +105,27 @@ export const projects = [
       "LedgerWatch chases every outstanding invoice for you and monitors the market around the clock, so nothing slips while you run the business.",
     stack: ["React.js", "Web3.js", "Node.js", "MongoDB"],
     url: "https://www.useledgerwatch.co",
+  },
+  {
+    id: "tessa",
+    index: "08",
+    type: "web",
+    tagLabel: "Web Dev",
+    title: "Tessa AI Assistant",
+    image: tessa,
+    alt: "Tessa AI Assistant Image",
+    description:
+      "An always-on personal AI agent for Windows. Voice-driven, permission-gated, and built to work while you sleep.",
+    stack: [
+      "React",
+      "Python",
+      "Node.js",
+      "TypeScript",
+      "GLSL",
+      "Javascript",
+      "CSS",
+    ],
+    url: null,
   },
 ];
 

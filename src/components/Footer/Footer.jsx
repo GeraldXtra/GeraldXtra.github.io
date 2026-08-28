@@ -90,9 +90,9 @@ export default function Footer() {
           <p className="footer__copy">
             © {YEAR} {profile.fullName}. All rights reserved.
           </p>
-          <p className="footer__built">
+          {/* <p className="footer__built">
             Designed and built by me, with React and Vite
-          </p>
+          </p> */}
         </div>
       </div>
     </footer>
