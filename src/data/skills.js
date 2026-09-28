@@ -1,56 +1,33 @@
-export const skills = {
-  eyebrow: "What I use",
-  title: ["Skills", "and tools"],
-  lede: "Where I'm at right now. These move as I keep working.",
-  columns: [
-    {
-      id: "development",
-      title: "Development",
-      accent: "clay",
-      bars: [
-        { name: "HTML and CSS", level: 90 },
-        { name: "JavaScript", level: 85 },
-        { name: "Responsive Design", level: 70 },
-        { name: "React.js + Vite", level: 75 },
-        { name: "Node.js", level: 80 },
-        { name: "Golang", level: 70 },
-        { name: "Python", level: 75 },
-        { name: "Solidity", level: 70 },
-        { name: "MongoDB", level: 75 },
-        { name: "SQL", level: 70 },
-        { name: "C Programming", level: 75 },
-        { name: "Java", level: 80 },
-        { name: "Git and Version Control", level: 65 },
-      ],
-      groupTitle: "Everyday tools",
-      chips: [
-        "VS Code",
-        "Git and GitHub",
-        "Vercel",
-        "Netlify",
-        "Render",
-        "AWS Cloud",
-        "Docker",
-        "Chrome DevTools",
-      ],
-    },
-    {
-      id: "design",
-      title: "UI/UX Design",
-      accent: "moss",
-      bars: [
-        { name: "Figma", level: 80 },
-        { name: "Wireframing and Prototyping", level: 70 },
-        { name: "User Interface Design", level: 80 },
-        { name: "Design Systems", level: 65 },
-      ],
-      groupTitle: "How I work with people",
-      chips: [
-        "Client Communication",
-        "Problem Solving",
-        "Self Management",
-        "Async Collaboration",
-      ],
-    },
-  ],
-};
+/* Skills and tools, one row per group. Claude and ChatGPT are tools, so they close the Everyday tools row. */
+export const SKILL_ROWS = [
+  {
+    title: "Development",
+    chips: [
+      "HTML and CSS",
+      "JavaScript",
+      "Responsive Design",
+      "React.js + Vite",
+      "Node.js",
+      "Golang",
+      "Python",
+      "Solidity",
+      "MongoDB",
+      "SQL",
+      "C Programming",
+      "Java",
+      "Git and Version Control",
+    ],
+  },
+  {
+    title: "UI/UX design",
+    chips: ["Figma", "Wireframing and Prototyping", "User Interface Design", "Design Systems"],
+  },
+  {
+    title: "Everyday tools",
+    chips: ["VS Code", "Git and GitHub", "Vercel", "Netlify", "Render", "AWS Cloud", "Docker", "Chrome DevTools", "Claude", "ChatGPT"],
+  },
+  {
+    title: "How I work with people",
+    chips: ["Client Communication", "Problem Solving", "Self Management", "Async Collaboration"],
+  },
+];

@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Portfolio of Eberechukwu Uchechukwu Gerald, software developer and interface designer",
+  "description": "Portfolio of Eberechukwu Uchechukwu Gerald, Web & App Developer",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

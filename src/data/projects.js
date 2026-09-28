@@ -1,136 +1,113 @@
-import safenote from "../assets/images/safenote.png";
-import glovo from "../assets/images/glovo.png";
-import digitaz from "../assets/images/digitaz.png";
-import etrade from "../assets/images/etrade.png";
-import gearzone from "../assets/images/gearzone.png";
-import crunchyroll from "../assets/images/crunchyroll.png";
-import ledgerwatch from "../assets/images/ledgerwatch.png";
-import tessa from "../assets/images/tessa.png";
+import freshfind from "../assets/work/freshfind.webp";
+import safenote from "../assets/work/safenote.webp";
+import tessa from "../assets/work/tessa.webp";
+import ledgerwatch from "../assets/work/ledgerwatch.webp";
+import gearzone from "../assets/work/gearzone.webp";
+import crunchyroll from "../assets/work/crunchyroll.webp";
 
-export const projectFilters = [
-  { id: "all", label: "Everything" },
-  { id: "web", label: "Web Development" },
-  { id: "uiux", label: "UI/UX Design" },
-];
-
-export const projects = [
+/* The showcase, in order. type drives the filters, label is the address shown in the frame. */
+export const PROJECTS = [
   {
-    id: "safenote",
-    index: "01",
+    key: "freshfind",
+    name: "FreshFind",
     type: "web",
-    tagLabel: "Web Dev",
-    title: "SafeNote",
-    image: safenote,
-    alt: "The SafeNote landing page showing the note composer",
-    description:
-      "Send a note or a file that deletes itself after one read. Everything is encrypted in the browser before it leaves, the link opens once, and there's no account to create.",
-    stack: ["React", "Node.js", "Encryption"],
-    url: "https://safenote.xyz",
-  },
-  {
-    id: "glovo",
-    index: "02",
-    type: "web",
-    tagLabel: "Web Dev",
-    title: "Glovo Front End Clone",
-    image: glovo,
-    alt: "A rebuild of the Glovo delivery homepage",
-    description:
-      "A close rebuild of the Glovo delivery front end, written from scratch in plain HTML and CSS. Angled section edges, a header that sticks properly, and a layout that held up at every width I tried.",
-    stack: ["HTML", "CSS", "Clip Path", "Responsive"],
-    url: null,
-  },
-
-  {
-    id: "digitaz",
-    index: "03",
-    type: "web",
-    tagLabel: "Web Dev",
-    title: "Digitaz Store Frontend",
-    image: digitaz,
-    alt: "The Digitaz gaming storefront homepage",
-    description:
-      "A storefront for gamers. Product grids, category browsing and a checkout flow, all on the front end, tuned so a long catalogue still feels quick to move through.",
-    stack: ["HTML", "CSS", "JavaScript"],
-    url: null,
-  },
-  {
-    id: "etrade",
-    index: "04",
-    type: "web",
-    tagLabel: "Web Dev",
-    title: "eTrade Store Frontend",
-    image: etrade,
-    alt: "The eTrade gadget shop homepage",
-    description:
-      "A shop for phones, accessories and small gadgets. The brief was simple: make a big catalogue feel small, and keep the walk from browsing to buying short.",
-    stack: ["HTML", "CSS", "JavaScript"],
-    url: null,
-  },
-  {
-    id: "gearzone",
-    index: "05",
-    type: "uiux",
-    tagLabel: "UI/UX",
-    title: "Gearzone Commerce Design",
-    image: gearzone,
-    alt: "Gearzone interface screens designed in Figma",
-    description:
-      "The full design pass for Gearzone, a tech and gadget store. User flows, wireframes, a component library and the finished screens, all built out in Figma.",
-    stack: ["Figma", "Wireframing", "Prototyping", "Design System"],
-    url: "https://www.figma.com/design/1bJ0oqAJ6EfqJF13e1CoRu/GearZone---Gaming-Tools-Ecommerce?node-id=0-1&t=qdBwVtZMyWsUGUk4-1",
-  },
-  {
-    id: "crunchyroll",
-    index: "06",
-    type: "uiux",
-    tagLabel: "UI/UX",
-    title: "Crunchyroll Prototype",
-    image: crunchyroll,
-    alt: "Crunchyroll redesign screens and prototype flow",
-    description:
-      "A redesign and clickable prototype for Crunchyroll. Browsing the catalogue, starting an episode, and picking up where you left off, mapped out screen by screen and wired together.",
-    stack: ["Figma", "Wireframing", "Prototyping", "Design System"],
-    url: "https://www.figma.com/design/Wl7ct6gVZJZQ2FgIUOhxUZ/Crunchyroll-Project?node-id=0-1&t=IBF1bs7inPSB2hms-1",
-  },
-  {
-    id: "ledgerwatch",
-    index: "07",
-    type: "web",
-    tagLabel: "Web Dev",
-    title: "LedgerWatch",
-    image: ledgerwatch,
-    alt: "Ledger Watch landing page.",
-    description:
-      "LedgerWatch chases every outstanding invoice for you and monitors the market around the clock, so nothing slips while you run the business.",
-    stack: ["React.js", "Web3.js", "Node.js", "MongoDB"],
-    url: "https://www.useledgerwatch.co",
-  },
-  {
-    id: "tessa",
-    index: "08",
-    type: "web",
-    tagLabel: "Web Dev",
-    title: "Tessa AI Assistant",
-    image: tessa,
-    alt: "Tessa AI Assistant Image",
-    description:
-      "An always-on personal AI agent for Windows. Voice-driven, permission-gated, and built to work while you sleep.",
-    stack: [
-      "React",
-      "Python",
-      "Node.js",
-      "TypeScript",
-      "GLSL",
-      "Javascript",
-      "CSS",
+    typeLabel: "Web development, team project",
+    label: "geraldxtra.github.io/freshfind",
+    image: freshfind,
+    width: 1100,
+    height: 550,
+    lazy: false,
+    alt: "The FreshFind home page, with a Lagos market photo and a search bar for markets",
+    desc: "A guide to farmers markets in Lagos, built by my team of four for TechWiz 7, Aptech's world tech championship. It shows where each market is, when it opens and what's in season. I led the team and built the home page, the market data, the shared layout and the chat assistant.",
+    stack: ["React", "Vite", "React Router", "JSON data", "Geolocation"],
+    links: [
+      { href: "https://geraldxtra.github.io/freshfind/", text: "Open FreshFind" },
+      { href: "https://github.com/GeraldXtra/freshfind", text: "See the code on GitHub" },
     ],
-    url: null,
+  },
+  {
+    key: "safenote",
+    name: "SafeNote",
+    type: "web",
+    typeLabel: "Web development",
+    label: "safenote.xyz",
+    image: safenote,
+    width: 1100,
+    height: 461,
+    lazy: true,
+    alt: "The SafeNote landing page showing the note composer",
+    desc: "Send a note or a file that deletes itself after one read. Everything is encrypted in the browser before it leaves, the link opens once, and there's no account to create.",
+    stack: ["React", "Node.js", "Encryption"],
+    links: [{ href: "https://safenote.xyz", text: "Open safenote.xyz" }],
+  },
+  {
+    key: "tessa",
+    name: "Tessa AI Assistant",
+    type: "web",
+    typeLabel: "Web development",
+    label: "Tessa on Windows",
+    image: tessa,
+    width: 1100,
+    height: 580,
+    lazy: true,
+    alt: "Tessa, the AI assistant, with its orb and calendar on screen",
+    desc: "A personal AI agent for Windows that stays on around the clock. It takes voice commands, asks permission before it acts, and keeps working while you sleep.",
+    stack: ["React", "Python", "Node.js", "TypeScript", "GLSL", "JavaScript", "CSS"],
+    quiet: "Walkthrough on request",
+  },
+  {
+    key: "ledgerwatch",
+    name: "LedgerWatch",
+    type: "web",
+    typeLabel: "Web development",
+    label: "useledgerwatch.co",
+    image: ledgerwatch,
+    width: 1100,
+    height: 510,
+    lazy: true,
+    alt: "The LedgerWatch landing page",
+    desc: "LedgerWatch chases every outstanding invoice for you and monitors the market around the clock, so nothing slips while you run the business.",
+    stack: ["React.js", "Web3.js", "Node.js", "MongoDB"],
+    links: [{ href: "https://www.useledgerwatch.co", text: "Open useledgerwatch.co" }],
+  },
+  {
+    key: "gearzone",
+    name: "Gearzone Commerce Design",
+    type: "uiux",
+    typeLabel: "UI/UX design",
+    label: "Figma file",
+    image: gearzone,
+    width: 935,
+    height: 637,
+    lazy: true,
+    alt: "Gearzone interface screens designed in Figma",
+    desc: "The full design pass for Gearzone, a tech and gadget store. User flows, wireframes, a component library and the finished screens, all built out in Figma.",
+    stack: ["Figma", "Wireframing", "Prototyping", "Design System"],
+    links: [
+      {
+        href: "https://www.figma.com/design/1bJ0oqAJ6EfqJF13e1CoRu/GearZone---Gaming-Tools-Ecommerce?node-id=0-1&t=qdBwVtZMyWsUGUk4-1",
+        text: "Open the Figma file",
+      },
+    ],
+  },
+  {
+    key: "crunchyroll",
+    name: "Crunchyroll Prototype",
+    type: "uiux",
+    typeLabel: "UI/UX design",
+    label: "Figma prototype",
+    image: crunchyroll,
+    width: 1100,
+    height: 504,
+    lazy: true,
+    alt: "Crunchyroll redesign screens and prototype flow",
+    desc: "A redesign and clickable prototype for Crunchyroll. Browsing the catalogue, starting an episode, and picking up where you left off, mapped out screen by screen and wired together.",
+    stack: ["Figma", "Wireframing", "Prototyping", "Design System"],
+    links: [
+      {
+        href: "https://www.figma.com/design/Wl7ct6gVZJZQ2FgIUOhxUZ/Crunchyroll-Project?node-id=0-1&t=IBF1bs7inPSB2hms-1",
+        text: "Open the Figma file",
+      },
+    ],
   },
 ];
-
-export const work = {
-  eyebrow: "Selected work",
-  title: ["Some things I've", "built and designed"],
-  lede: "Not everything, just the ones worth showing. These say the most about how I work.",
-};
