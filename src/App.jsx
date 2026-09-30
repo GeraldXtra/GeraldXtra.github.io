@@ -77,6 +77,21 @@ export default function App() {
     };
   }, []);
 
+  /* The loading screen in index.html waits for the app to mount and for the map's first frame.
+     When it opens out from its pin, a pulse runs through the streets from the same spot. */
+  useEffect(() => {
+    const loader = window.__loader;
+    if (!loader) return undefined;
+    loader.step("mounted");
+    loader.onReveal = (x, y) => {
+      const map = mapRef.current;
+      if (map && map.pulseAt) map.pulseAt(x, y);
+    };
+    return () => {
+      loader.onReveal = null;
+    };
+  }, []);
+
   /* Sections ease in once as they arrive. */
   useEffect(() => {
     const els = Array.from(document.querySelectorAll(".reveal, .reveal-wipe"));
@@ -147,7 +162,15 @@ export default function App() {
       <a className="skip" href="#main">
         Skip to content
       </a>
-      <LagosMap apiRef={mapRef} veilRef={veilRef} onReady={() => scrollRef.current && scrollRef.current()} />
+      <LagosMap
+        apiRef={mapRef}
+        veilRef={veilRef}
+        onData={() => window.__loader && window.__loader.step("data")}
+        onReady={() => {
+          if (scrollRef.current) scrollRef.current();
+          if (window.__loader) window.__loader.step("map");
+        }}
+      />
       <Header
         navRef={navRef}
         menuBtnRef={menuBtnRef}

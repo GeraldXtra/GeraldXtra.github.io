@@ -1,44 +1,100 @@
 <!doctype html>
-<!-- Link preview image. Render at 1200x630 and save as public/og-card.png. -->
+<!-- Link preview image, in the site's dark style. Rendered at 1200x630 to public/og-card.png by:
+     "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new --screenshot=public/og-card.png --window-size=1200,630 --hide-scrollbars --force-device-scale-factor=1 design/og-card.html
+     (add --user-data-dir=<a temp folder> when Chrome is already open). -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,600&family=Schibsted+Grotesk:wght@400;500&display=swap" />
     <style>
+      @font-face { font-family: "Archivo"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: block; src: url(../resume/fonts/Archivo-w400.ttf) format("truetype"); }
+      @font-face { font-family: "Archivo"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: block; src: url(../resume/fonts/Archivo-w600.ttf) format("truetype"); }
+      @font-face { font-family: "Archivo"; font-style: normal; font-weight: 750; font-stretch: 106%; font-display: block; src: url(../resume/fonts/Archivo-w750-wd106.ttf) format("truetype"); }
+      :root {
+        --bg: #0F1316; --bg-rgb: 15 19 22;
+        --line: rgb(236 230 219/.10); --line-2: rgb(236 230 219/.19);
+        --ink: #ECE6DB; --ink-2: #ABA69D; --ink-3: #8F8B84;
+        --accent: #EF5A4C;
+      }
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { width: 1200px; height: 630px; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
       body {
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 64px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 72px 80px 64px;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Archivo", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      /* the section rule from the site, as a top edge */
+      body::before {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; top: 0;
+        height: 1px;
+        background: repeating-linear-gradient(90deg, var(--line-2) 0 14px, transparent 14px 26px);
+      }
+      body::after {
+        content: "";
+        position: absolute;
+        top: -2px; left: 0;
+        width: 240px; height: 5px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, transparent, rgb(255 77 61/.95));
+        box-shadow: 0 0 14px 2px rgb(255 77 61/.4);
+        transform: translateX(760px);
+      }
+      .logo { display: block; width: 176px; height: auto; overflow: visible; color: var(--ink); }
+      .logo__ring { stroke: var(--accent); }
+      .logo__dot { fill: var(--accent); }
+      .name {
+        margin-top: 40px;
+        font-size: 92px;
+        line-height: .98;
+        font-weight: 750;
+        font-stretch: 106%;
+        letter-spacing: -.032em;
+        color: var(--ink);
+      }
+      .name span { display: block; }
+      .role {
+        margin-top: 26px;
+        font-size: 34px;
+        line-height: 1.2;
+        font-weight: 600;
+        letter-spacing: -.005em;
+        color: var(--accent);
+      }
+      .base {
+        display: flex;
         align-items: center;
-        padding: 72px 80px;
-        background: #f8f7f4;
-        color: #16171a;
-        font-family: "Schibsted Grotesk", Arial, sans-serif;
-        border-bottom: 10px solid #a8431a;
+        gap: 22px;
+        padding-top: 22px;
+        border-top: 1px solid var(--line);
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--ink-3);
       }
-      .name { font-size: 28px; color: #4a4d53; font-weight: 500; }
-      h1 {
-        margin-top: 12px;
-        font-family: "Newsreader", Georgia, serif;
-        font-size: 96px; font-weight: 600; line-height: 1; letter-spacing: -0.02em;
-      }
-      .line { margin-top: 30px; font-size: 28px; line-height: 1.4; color: #4a4d53; max-width: 24em; }
-      .url { margin-top: 36px; font-size: 24px; color: #a8431a; font-weight: 500; }
-      figure { padding: 10px; background: #fff; border: 1px solid #e2e0da; border-radius: 4px; }
-      img { display: block; width: 100%; border-radius: 2px; }
+      .base b { font-weight: 600; color: var(--ink-2); }
+      .base i { width: 6px; height: 6px; background: var(--accent); }
     </style>
   </head>
   <body>
     <div>
-      <p class="name">Eberechukwu Uchechukwu Gerald</p>
-      <h1>Web &amp; App Developer</h1>
-      <p class="line">React and Node.js web apps, and Windows desktop apps with Electron. Lagos, Nigeria.</p>
-      <p class="url">geraldxtra.github.io</p>
+      <svg class="logo" viewBox="0 -10 332 122" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter">
+          <path d="M66 11H11V89H66M11 50H56"/>
+          <path d="M100 11V59A30 30 0 0 0 130 89H136A30 30 0 0 0 166 59V11"/>
+          <path d="M262 11H230A30 30 0 0 0 200 41V59A30 30 0 0 0 230 89H242A30 30 0 0 0 272 59V50H238"/>
+        </g>
+        <circle class="logo__ring" cx="309" cy="89" r="17.5" fill="none" stroke="var(--accent)" stroke-width="3.5" opacity=".38"/>
+        <circle class="logo__dot" cx="309" cy="89" r="11" fill="var(--accent)"/>
+      </svg>
+      <h1 class="name"><span>Eberechukwu</span><span>Uchechukwu Gerald</span></h1>
+      <p class="role">Web &amp; App Developer &amp; UI/UX Designer</p>
     </div>
-    <figure><img src="../src/assets/portrait.webp" alt="" /></figure>
+    <p class="base"><b>geraldxtra.github.io</b><i></i>Lagos, Nigeria, working remotely</p>
   </body>
 </html>

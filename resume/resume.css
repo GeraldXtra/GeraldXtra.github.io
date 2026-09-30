@@ -1,0 +1,197 @@
+/* The resume, styled from src/styles/site.css: same colours, type and borders, no motion.
+   Printed to public/resume.pdf (dark) and public/resume-light.pdf (light) by scripts/build-resume.mjs. */
+
+/* Archivo, self hosted from resume/fonts. Chrome prints a variable font as Type 3 outlines instead of
+   embedding it, so these are fixed instances of the Google Fonts Archivo file at the exact weights and
+   widths used below. Each declaration names one file, and the browser matches on stretch then weight. */
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: block; src: url(fonts/Archivo-w400.ttf) format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: block; src: url(fonts/Archivo-w600.ttf) format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 650; font-stretch: 100%; font-display: block; src: url(fonts/Archivo-w650.ttf) format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: block; src: url(fonts/Archivo-w700.ttf) format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 650; font-stretch: 112%; font-display: block; src: url(fonts/Archivo-w650-wd112.ttf) format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 750; font-stretch: 106%; font-display: block; src: url(fonts/Archivo-w750-wd106.ttf) format("truetype"); }
+
+/* Tokens, copied from site.css. Light is the default, data-theme="dark" switches. */
+:root {
+  --bg: #E8E6E1; --bg-rgb: 232 230 225;
+  --surface: #F3F2EE; --surface-2: #E3E1DB;
+  --line: rgb(21 24 27/.12); --line-2: rgb(21 24 27/.24);
+  --ink: #15181B; --ink-2: #464B50; --ink-3: #62676C;
+  --accent: #B42C1C; --accent-fill: #C0311F; --accent-fill-2: #A82816; --on-accent: #FFFFFF;
+  --map-style: light; --map-minor: #CAC6BE; --map-mid: #FFFFFF; --map-major: #FFFFFF; --map-top: #FFFCF4;
+  --map-mid-case: #C9C4BB; --map-major-case: #B7B1A7; --map-top-case: #A39B8F;
+  --water-fill: #CBD8DE; --water-edge: #A7BCC6; --car-glow: 0;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0F1316; --bg-rgb: 15 19 22;
+  --surface: #151A1F; --surface-2: #1B2127;
+  --line: rgb(236 230 219/.10); --line-2: rgb(236 230 219/.19);
+  --ink: #ECE6DB; --ink-2: #ABA69D; --ink-3: #8F8B84;
+  --accent: #EF5A4C; --accent-fill: #D63A2F; --accent-fill-2: #E4483C; --on-accent: #FFFFFF;
+  --map-style: dark; --map-minor: rgb(236 230 219/.075); --map-mid: rgb(236 230 219/.13);
+  --map-major: rgb(236 230 219/.21); --map-top: rgb(236 230 219/.32);
+  --water-fill: rgb(70 112 140/.17); --water-edge: rgb(150 196 222/.17); --car-glow: 1;
+  color-scheme: dark;
+}
+
+/* One A4 page. The page margin is 0 so the map can bleed to the edge; the 14mm margin is the sheet's padding. */
+@page { size: A4; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); }
+body {
+  color: var(--ink);
+  font-family: "Archivo", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 8.4pt;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+a { color: inherit; text-decoration: none; }
+p, ul, h1, h2, h3 { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+.sheet {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  padding: 14mm;
+  overflow: hidden;
+  background: var(--bg);
+  page-break-after: avoid;
+  break-after: avoid;
+}
+@media screen {
+  body { padding: 24px 0; background: var(--surface-2); }
+  .sheet { margin: 0 auto; box-shadow: 0 30px 60px -30px rgb(0 0 0/.5); }
+}
+
+/* The still frame of the Lagos map, drawn once behind everything and faded towards the middle of the page.
+   Nothing else is positioned, so the text stays in reading order inside the PDF. */
+.map {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.sheet > :not(.map) { position: relative; z-index: 1; }
+
+/* header: the wordmark with the contact row beside it, then the name and the title.
+   The file order stays wordmark, name, title, contact; the grid only places the contact row. */
+.head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas: "logo contact" "name name" "role role";
+  align-items: end;
+  column-gap: 10mm;
+  padding-bottom: 4.5mm;
+  margin-bottom: 5.5mm;
+  border-bottom: 1px solid var(--line-2);
+}
+.logo { grid-area: logo; display: inline-flex; align-items: center; color: var(--ink); line-height: 0; }
+.logo__mark { display: block; width: auto; height: 8mm; overflow: visible; }
+.logo__ring { stroke: var(--accent); }
+.logo__dot { fill: var(--accent); }
+.name {
+  grid-area: name;
+  margin-top: 6mm;
+  font-size: 26pt;
+  line-height: .98;
+  font-weight: 750;
+  font-stretch: 106%;
+  letter-spacing: -.032em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.role {
+  grid-area: role;
+  margin-top: 2.4mm;
+  font-size: 10.6pt;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  color: var(--accent);
+}
+.contact {
+  grid-area: contact;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1.6mm 5mm;
+  font-size: 8pt;
+  line-height: 1.3;
+  color: var(--ink-2);
+}
+.contact li { display: flex; align-items: center; gap: 2mm; white-space: nowrap; }
+.contact a { color: var(--ink); }
+.contact small { color: var(--ink-2); font-size: 7.4pt; }
+svg.i { width: 3.3mm; height: 3.3mm; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; color: var(--ink-3); }
+svg.i--fill { fill: currentColor; stroke: none; }
+
+/* body: two columns */
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 63fr) minmax(0, 37fr);
+  gap: 0 8mm;
+  align-items: start;
+}
+.col { display: grid; gap: 4.6mm; align-content: start; min-width: 0; }
+.col--side { padding-left: 8mm; border-left: 1px solid var(--line); }
+
+/* section labels, like the site's small labels, each with a short accent mark. No letter-spacing:
+   Chrome writes tracked text as one glyph per operator, and PDF readers then split "PROFILE" into letters. */
+.label {
+  display: flex;
+  align-items: center;
+  gap: 2.4mm;
+  margin-bottom: 2mm;
+  font-size: 7.6pt;
+  font-weight: 650;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.label::before { content: ""; width: 4.6mm; height: 2px; flex: none; background: var(--accent); }
+
+/* profile */
+.profile { max-width: 70ch; font-size: 8.9pt; line-height: 1.45; color: var(--ink-2); }
+
+/* experience */
+.job__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1mm 4mm; }
+.job__title { font-size: 10pt; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
+.job__meta { font-size: 8pt; color: var(--ink-3); white-space: nowrap; }
+.points { display: grid; gap: 1.1mm; margin-top: 1.8mm; }
+.points li { display: grid; grid-template-columns: 1.7mm 1fr; column-gap: 2.5mm; align-items: start; color: var(--ink-2); }
+.points li::before { content: ""; width: 1.7mm; height: 1.7mm; margin-top: .5em; background: var(--accent); }
+
+/* selected work */
+.work { display: grid; gap: 2.4mm; }
+.project__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4mm 2.6mm; }
+.project__name { font-size: 9.6pt; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
+.project__type { font-size: 8pt; color: var(--ink-3); }
+.project__type::before { content: ""; display: inline-block; width: 1px; height: .85em; margin-right: 2.6mm; vertical-align: -.08em; background: var(--line-2); }
+.project__link { margin-left: .6mm; font-size: 8pt; font-weight: 600; color: var(--accent); }
+.project p { margin-top: .5mm; color: var(--ink-2); }
+.project .stack { margin-top: .5mm; font-size: 7.8pt; color: var(--ink-3); }
+
+/* skills and tools, chips exactly as the site's .chips */
+.group { display: grid; gap: 1.4mm; }
+.group + .group { margin-top: 2.6mm; }
+.group__title { font-size: 8.2pt; font-weight: 650; color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 1.4mm; }
+.chips li {
+  padding: 1mm 2.2mm;
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  background: rgb(var(--bg-rgb)/.55);
+  font-size: 7.8pt;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* education */
+.edu { display: grid; gap: 2.6mm; }
+.edu b { display: block; font-size: 9.2pt; font-weight: 700; letter-spacing: -.01em; color: var(--ink); text-wrap: balance; }
+.edu span { display: block; margin-top: .5mm; font-size: 8pt; line-height: 1.4; color: var(--ink-3); text-wrap: pretty; }

@@ -1329,15 +1329,17 @@ function createMap(els, DATA) {
   };
 }
 
-export default function LagosMap({ apiRef, veilRef, onReady }) {
+export default function LagosMap({ apiRef, veilRef, onData, onReady }) {
   const mapRef = useRef(null);
   const roadsRef = useRef(null);
   const glowRef = useRef(null);
   const trafficRef = useRef(null);
   const labelsRef = useRef(null);
+  const onDataRef = useRef(onData);
   const onReadyRef = useRef(onReady);
 
   useEffect(() => {
+    onDataRef.current = onData;
     onReadyRef.current = onReady;
   });
 
@@ -1345,29 +1347,44 @@ export default function LagosMap({ apiRef, veilRef, onReady }) {
   useEffect(() => {
     const ctrl = new AbortController();
     let map = null;
+    let timer = 0;
+    let raf = 0;
     fetch(`${import.meta.env.BASE_URL}lagos-roads.json`, { signal: ctrl.signal })
       .then((res) => (res.ok ? res.json() : null))
       .then(
         (DATA) => {
           if (!DATA || ctrl.signal.aborted) return;
-          map = createMap(
-            {
-              map: mapRef.current,
-              roads: roadsRef.current,
-              glow: glowRef.current,
-              traffic: trafficRef.current,
-              labels: labelsRef.current,
-            },
-            DATA,
-          );
-          if (!map) return;
-          apiRef.current = map;
-          if (onReadyRef.current) onReadyRef.current();
+          /* The first draw is heavy, so while the loading screen is drawing its wordmark it waits.
+             onData fires a frame before it, so "Drawing the streets" can be shown; then onReady. */
+          const loader = window.__loader;
+          const quiet = loader && loader.quiet ? Math.max(0, loader.quiet - performance.now()) : 0;
+          timer = setTimeout(() => {
+            if (ctrl.signal.aborted) return;
+            if (onDataRef.current) onDataRef.current();
+            raf = requestAnimationFrame(() => {
+              if (ctrl.signal.aborted) return;
+              map = createMap(
+                {
+                  map: mapRef.current,
+                  roads: roadsRef.current,
+                  glow: glowRef.current,
+                  traffic: trafficRef.current,
+                  labels: labelsRef.current,
+                },
+                DATA,
+              );
+              if (!map) return;
+              apiRef.current = map;
+              if (onReadyRef.current) onReadyRef.current();
+            });
+          }, quiet);
         },
         () => {},
       );
     return () => {
       ctrl.abort();
+      clearTimeout(timer);
+      cancelAnimationFrame(raf);
       if (map) {
         map.destroy();
         map = null;

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Logo from "./Logo";
 import { debounce, reduced, whenVisible } from "../utils/motion";
 
 /* The photo is found at build time: the first of these that exists in src/assets is used. */
@@ -103,7 +104,7 @@ export default function Portrait() {
       <div className="portrait__frame">
         <div className="portrait__fallback" aria-hidden="true">
           <canvas className="portrait__waves" ref={canvasRef}></canvas>
-          <span className="portrait__mono">EUG.</span>
+          <Logo className="portrait__mono" />
         </div>
         {hasPhoto && (
           <img

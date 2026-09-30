@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Eberechukwu Gerald, Web &amp; App Developer and UI/UX Designer in Lagos</title>
-<meta name="description" content="Gerald is a freelance web and app developer and UI/UX designer in Lagos, Nigeria, building websites, apps and products for founders and small teams.">
+<title>Eberechukwu Gerald, Web &amp; App Developer &amp; UI/UX Designer in Lagos</title>
+<meta name="description" content="Gerald is a freelance Web &amp; App Developer &amp; UI/UX Designer in Lagos, Nigeria, building websites, apps and products for founders and small teams.">
 <meta name="author" content="Eberechukwu Uchechukwu Gerald">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#E8E6E1" media="(prefers-color-scheme: light)">
@@ -12,7 +12,7 @@
 <link rel="canonical" href="https://geraldxtra.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Eberechukwu Gerald">
-<meta property="og:title" content="Eberechukwu Gerald, Web &amp; App Developer and UI/UX Designer">
+<meta property="og:title" content="Eberechukwu Gerald, Web &amp; App Developer &amp; UI/UX Designer">
 <meta property="og:description" content="Freelance developer and designer in Lagos, Nigeria. I design and build websites and products for founders and small teams.">
 <meta property="og:url" content="https://geraldxtra.github.io/">
 <meta property="og:image" content="https://geraldxtra.github.io/og-card.png">
@@ -20,17 +20,95 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@GeraldXtra">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("gerald-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<style>
+/* The loading screen, inline so it paints before the bundle; the script at the end of body drives it. */
+:root{--l-bg:#E8E6E1;--l-ink:#15181B;--l-mute:#62676C;--l-ac:#B42C1C;--l-line:rgb(21 24 27/.24);--l-e:cubic-bezier(.2,.7,.2,1)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--l-bg:#0F1316;--l-ink:#ECE6DB;--l-mute:#8F8B84;--l-ac:#EF5A4C;--l-line:rgb(236 230 219/.19)}}
+:root[data-theme="dark"]{--l-bg:#0F1316;--l-ink:#ECE6DB;--l-mute:#8F8B84;--l-ac:#EF5A4C;--l-line:rgb(236 230 219/.19)}
+@property --l-r{syntax:"<length>";inherits:false;initial-value:0px}
+#ld{display:none}
+.js #ld{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;color:var(--l-ink);font-family:Archivo,"Segoe UI",Arial,sans-serif;animation:ldGone .4s 8s forwards}
+@keyframes ldGone{to{opacity:0;visibility:hidden}}
+.ld-sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ld-bg{position:absolute;inset:0;background:var(--l-bg);--l-x:50%;--l-y:50%;transition:--l-r .9s var(--l-e)}
+.ld-open .ld-bg{--l-r:var(--l-R,3000px);mask-image:radial-gradient(circle at var(--l-x) var(--l-y),#0000 var(--l-r),#000 calc(var(--l-r) + 36px))}
+.ld-box{position:relative;z-index:1;display:grid;gap:22px;width:62vw}
+@media (min-width:720px){.ld-box{width:38vw}}
+.ld-logo{display:block;width:100%;height:auto;overflow:visible;transform-origin:0 0;transition:transform .9s var(--l-e),opacity .4s}
+.ld-dot,.ld-ring{transform-box:fill-box;transform-origin:center}
+.ld-tip{opacity:0}
+.ld-draw .ld-dot{opacity:0;animation:ldDrop .6s cubic-bezier(.3,.6,.4,1) 1.2s forwards}
+.ld-draw .ld-ring{opacity:0;animation:ldIn .3s 1.55s forwards,ldPing .8s var(--l-e) 1.8s 2}
+@keyframes ldDrop{0%{opacity:0;transform:translateY(-46px)}40%{opacity:1}58%{transform:none}76%{transform:translateY(-7px)}to{opacity:1;transform:none}}
+@keyframes ldIn{to{opacity:.38}}
+@keyframes ldPing{0%{opacity:.55;transform:scale(1)}to{opacity:0;transform:scale(3)}}
+.ld-line{height:1px;background:var(--l-line);overflow:hidden}
+.ld-line i{display:block;height:100%;background:var(--l-ac);transform:scaleX(var(--l-p,0));transform-origin:left;transition:transform .5s var(--l-e)}
+.ld-cap{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin:-8px 0 0;height:16px;font-size:12px;line-height:16px;color:var(--l-mute)}
+.ld-cap b{font-weight:600;color:var(--l-ink);font-variant-numeric:tabular-nums}
+.ld-line,.ld-cap{transition:opacity .4s}
+.ld-out .ld-line,.ld-out .ld-cap,.ld-out .ld-tip{opacity:0}
+.ld-fade{opacity:0;transition:opacity .2s}
+html.ld-lock{overflow:hidden;scrollbar-gutter:stable}
+html.ld-hold .hero .line>span,html.ld-hold .intro{animation-play-state:paused}
+html.ld-fly .nav .logo__mark{visibility:hidden}
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Eberechukwu Uchechukwu Gerald","alternateName":"GeraldXtra","jobTitle":"Web & App Developer and UI/UX Designer","email":"sonpele@proton.me","url":"https://geraldxtra.github.io/","address":{"@type":"PostalAddress","addressLocality":"Lagos","addressCountry":"Nigeria"},"sameAs":["https://github.com/GeraldXtra","https://x.com/GeraldXtra","https://www.tiktok.com/@geraldxtra"]}
+{"@context":"https://schema.org","@type":"Person","name":"Eberechukwu Uchechukwu Gerald","alternateName":"GeraldXtra","jobTitle":"Web & App Developer & UI/UX Designer","email":"sonpele@proton.me","url":"https://geraldxtra.github.io/","address":{"@type":"PostalAddress","addressLocality":"Lagos","addressCountry":"Nigeria"},"sameAs":["https://github.com/GeraldXtra","https://x.com/GeraldXtra","https://www.tiktok.com/@geraldxtra"]}
 </script>
 </head>
 <body>
-<div id="root"></div>
+<div id="ld" role="status"><span class="ld-sr">Loading Eberechukwu Gerald's portfolio</span><div class="ld-bg"></div>
+<div class="ld-box">
+<svg class="ld-logo" viewBox="0 -10 332 122" aria-hidden="true">
+<g class="ld-ink" fill="none" stroke="currentColor" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter"><path d="M66 11H11V89H66"/><path d="M11 50H56"/><path d="M100 11V59A30 30 0 0 0 130 89H136A30 30 0 0 0 166 59V11"/><path d="M262 11H230A30 30 0 0 0 200 41V59A30 30 0 0 0 230 89H242A30 30 0 0 0 272 59V50H238"/></g>
+<circle class="ld-ring" cx="309" cy="89" r="17.5" fill="none" stroke="var(--l-ac)" stroke-width="3.5" opacity=".38"/>
+<circle class="ld-dot" cx="309" cy="89" r="11" fill="var(--l-ac)"/>
+<g fill="var(--l-ac)"><circle class="ld-tip" r="6"/><circle class="ld-tip" r="6"/><circle class="ld-tip" r="6"/><circle class="ld-tip" r="6"/></g>
+</svg>
+<div class="ld-line"><i></i></div>
+<p class="ld-cap"><span>Lagos, Nigeria</span><span id="ld-step">Loading fonts</span><b id="ld-time"></b></p>
+</div></div>
+<script>
+/* Drives the loading screen. Progress is real: parsed, fonts, app mounted, map drawn (React reports the last two
+   through window.__loader). It leaves after 6 s whatever happens, and only runs when html has the js class. */
+(function(){var d=document,h=d.documentElement,ld=d.getElementById("ld");
+function finish(){if(!ld)return;ld.remove();ld=null;h.classList.remove("ld-lock","ld-hold","ld-fly");var r=d.getElementById("root");if(r)r.removeAttribute("aria-busy");try{sessionStorage.setItem("eug-ld","1")}catch(e){}}
+try{if(!ld||!h.classList.contains("js"))return;
+var rm=matchMedia("(prefers-reduced-motion: reduce)").matches,first=true;try{first=!sessionStorage.getItem("eug-ld")}catch(e){}
+var draw=first&&!rm,min=draw?2100:500,t0=performance.now(),st={},done=false,safety=setTimeout(reveal,6000);
+h.classList.add("ld-lock");if(!rm)h.classList.add("ld-hold");if(draw)ld.classList.add("ld-draw");
+var lg=ld.querySelector(".ld-logo"),dot=ld.querySelector(".ld-dot"),bg=ld.querySelector(".ld-bg"),cap=d.getElementById("ld-step"),tm=d.getElementById("ld-time"),fmt=null;
+try{fmt=new Intl.DateTimeFormat("en-GB",{hour:"2-digit",minute:"2-digit",hour12:false,timeZone:"Africa/Lagos"})}catch(e){}
+function tick(){if(fmt)tm.textContent=fmt.format(new Date())}tick();var clock=setInterval(tick,10000);
+function paint(){ld.style.setProperty("--l-p",(1+(st.fonts|0)+(st.mounted|0)+(st.map|0))/4);cap.textContent=!st.fonts?"Loading fonts":!st.data?"Loading the map":!st.map?"Drawing the streets":"Ready";check()}
+function check(){if(done||!(st.fonts&&st.mounted&&st.map))return;var left=min-(performance.now()-t0);left<=0?reveal():setTimeout(check,left)}
+if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){st.fonts=1;paint()});else st.fonts=1;
+window.__loader={step:function(n){st[n]=1;if(n==="map")st.data=1;paint()},onReveal:null,quiet:0};
+var frame=null;
+if(draw){var ps=ld.querySelectorAll(".ld-ink path"),tips=ld.querySelectorAll(".ld-tip"),L=[],S=[0,.3,.38,.72],D=[.42,.22,.48,.48],i;
+for(i=0;i<4;i++){L[i]=ps[i].getTotalLength();ps[i].style.strokeDasharray=L[i]+24;ps[i].style.strokeDashoffset=L[i]+36}
+frame=function(now){var t=(now-t0)/1000,on=false;for(var i=0;i<4;i++){var p=Math.min(1,Math.max(0,(t-S[i])/D[i])),e=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2,pt=ps[i].getPointAtLength(L[i]*e);ps[i].style.strokeDashoffset=L[i]+36-e*(L[i]+24);tips[i].setAttribute("cx",pt.x);tips[i].setAttribute("cy",pt.y);tips[i].style.opacity=p>0&&p<1?1:0;if(p<1)on=true}if(on&&ld)requestAnimationFrame(frame)}}
+/* the clock starts on the first painted frame; the map keeps its heavy first draw until the wordmark is drawn */
+requestAnimationFrame(function(now){t0=now;window.__loader.quiet=draw?now+1850:0;if(frame)frame(now)});
+function reveal(){if(done||!ld)return;done=true;clearTimeout(safety);clearInterval(clock);ld.style.setProperty("--l-p",1);ld.classList.add("ld-out");h.classList.remove("ld-hold");
+var r=dot.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;
+if(window.__loader.onReveal)try{window.__loader.onReveal(x,y)}catch(e){}
+if(rm){ld.classList.add("ld-fade");setTimeout(finish,220);return}
+var R=Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y))+40,mk=d.querySelector(".nav .logo__mark"),a=lg.getBoundingClientRect(),b=mk&&mk.getBoundingClientRect();
+bg.style.cssText="--l-x:"+x+"px;--l-y:"+y+"px;--l-R:"+R+"px";
+var fb=setTimeout(finish,1400);lg.addEventListener("transitionend",function(e){if(e.propertyName==="transform"){clearTimeout(fb);finish()}});
+requestAnimationFrame(function(){ld.classList.add("ld-open");if(b&&b.width){h.classList.add("ld-fly");lg.style.transform="translate("+(b.left-a.left)+"px,"+(b.top-a.top)+"px) scale("+b.width/a.width+")"}else lg.style.opacity=0})}
+paint()}catch(e){finish()}})();
+</script>
+<div id="root" aria-busy="true"></div>
 <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

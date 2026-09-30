@@ -21,10 +21,10 @@ export default function Hero({ mapRef }) {
           </p>
           <h1 id="hero-title">
             <span className="line">
-              <span style={{ "--d": 0 }}>Web & app developer</span>
-            </span>
+              <span style={{ "--d": 0 }}>Web & App Developer</span>
+            </span>{" "}
             <span className="line">
-              <span style={{ "--d": 1 }}>and UI/UX designer</span>
+              <span style={{ "--d": 1 }}>& UI/UX Designer</span>
             </span>
           </h1>
           <p className="hero__intro intro" style={{ "--d": 650 }}>

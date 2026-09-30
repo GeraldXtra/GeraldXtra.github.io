@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Clock from "../components/Clock";
 import Icon from "../components/Icon";
+import Logo from "../components/Logo";
 import { SECTIONS } from "../data/nav";
 import useThemeMode from "../hooks/useThemeMode";
 
@@ -33,8 +34,8 @@ export default function Header({ navRef, menuBtnRef, menuOpen, onMenuToggle }) {
   return (
     <header className="nav" id="nav" ref={navRef}>
       <div className="wrap nav__inner">
-        <a className="logo" href="#top" aria-label="Eberechukwu Gerald, back to the top">
-          EUG<span>.</span>
+        <a className="logo" href="#top" aria-label="Eberechukwu Gerald, home">
+          <Logo />
         </a>
         <nav className="nav__nav" aria-label="Main">
           <ul className="nav__links">

@@ -1,4 +1,5 @@
 import Icon from "../components/Icon";
+import Logo from "../components/Logo";
 import { SOCIAL } from "../data/contact";
 import { SECTIONS } from "../data/nav";
 
@@ -9,9 +10,9 @@ export default function Footer() {
         <div className="footer__grid">
           <div className="footer__brand">
             <a className="logo" href="#top" aria-label="Back to the top">
-              EUG<span>.</span>
+              <Logo />
             </a>
-            <p>Web & app developer and UI/UX designer, building from Lagos, Nigeria.</p>
+            <p>Web & App Developer & UI/UX Designer, building from Lagos, Nigeria.</p>
           </div>
           <nav className="footer__col" aria-label="Footer">
             <p className="mini-title">Sections</p>
